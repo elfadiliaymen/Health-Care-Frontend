@@ -1,81 +1,190 @@
 import api from "../../api/api";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
+const schema = yup.object({
+  nom: yup.string().required("Le nom est obligatoire"),
 
+  prenom: yup.string().required("Le prénom est obligatoire"),
 
-function ModifiePatient(){
+  email: yup
+    .string()
+    .email("Email invalide")
+    .required("L'email est obligatoire"),
 
-    const [patientId , setPatientId] = useState();
-    const[patient , setPatient] = useState({
-  "nom": "",
-  "prenom": "",
-  "email": "",
-  "username": "",
-  "password": "",
-  "telephone": "",
-  "dateNaissance": ""
-    })
+  username: yup
+    .string()
+    .required("Le username est obligatoire"),
 
-    function getPatient(id){
-            api.get(`/patient/${id}/consulter`).then(
-        res => {
-            console.log(res.data);
-            setPatient(res.data);
-        }
-    )
-      .catch((error) => {
-                console.log(error);
-            });
-    }
+  password: yup
+    .string()
+    .min(6, "Minimum 6 caractères")
+    .required("Le mot de passe est obligatoire"),
 
-    function handleSubmit(e){
-        e.preventDefault();
+  telephone: yup
+    .string()
+    .required("Le téléphone est obligatoire"),
 
-         api.put(`/patient/${patientId}` , patient).then(res => {
-        console.log(res.data)
-        setPatient({
-  "nom": "",
-  "prenom": "",
-  "email": "",
-  "username": "",
-  "password": "",
-  "telephone": "",
-  "dateNaissance": ""
+  dateNaissance: yup
+    .string()
+    .required("La date de naissance est obligatoire"),
+});
 
-    }).catch(err => {
+function ModifiePatient() {
+
+  const [patientId, setPatientId] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  function getPatient() {
+
+    api.get(`/patient/${patientId}/consulter`)
+      .then((res) => {
+
+        console.log(res.data);
+
+        // Remplit automatiquement le formulaire
+        reset(res.data);
+
+      })
+      .catch((err) => {
         console.log(err);
-    });
-    }
+      });
+  }
 
-)
-    }
+  function onSubmit(data) {
 
-    return(
-        <>
-        <h1>Modifie Patient :</h1>
-        enter id de patient : <input type="number" value={patientId} onChange={(e) => setPatientId(e.target.value)} />
-        <button onClick={() => getPatient(patientId)}> get patient </button>
-        <form onSubmit={handleSubmit}>
-               nom :
-            <input type="text" name="nom" id="" value={patient.nom} onChange={(e) => {setPatient({...patient , nom : e.target.value})}} />
-            prenom :
-            <input type="text" name="prenom" id="" value={patient.prenom} onChange={(e) => {setPatient({...patient , prenom : e.target.value})}} />
+    api.put(`/patient/${patientId}`, data)
+      .then((res) => {
 
-            email :
-            <input type="email" name="email" id="" value={patient.email} onChange={(e) => {setPatient({...patient , email : e.target.value})} }/>
-             password :
-            <input type="password" name="password" id="" value={patient.password} onChange={(e) => {setPatient({...patient , password : e.target.value})} }/>
-            username :  
-            <input type="text" name="username" id="" value={patient.username} onChange={(e) => {setPatient({...patient , username : e.target.value})}}/>
-            telephone : 
-            <input type="number" name="telephone" id="" value={patient.telephone} onChange={(e) => {setPatient({...patient , telephone : e.target.value})} }/>
-             datedenaissance : 
-            <input type="date" name="dateNaissance" id="" value={patient.dateNaissance} onChange={(e) => {setPatient({...patient , dateNaissance : e.target.value})}}/>
-            <button type="submit">add</button>
-        </form>
-        </>
-    );
+        console.log(res.data);
 
+        alert("Patient modifié avec succès");
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  }
+
+  return (
+    <div>
+
+      <h1>Modifier Patient</h1>
+
+      <div>
+
+        <label>ID du patient</label>
+
+        <input
+          type="number"
+          value={patientId}
+          onChange={(e) => setPatientId(e.target.value)}
+        />
+
+        <button type="button" onClick={getPatient}>
+          Charger
+        </button>
+
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+
+        <div>
+          <label>Nom</label>
+
+          <input
+            type="text"
+            {...register("nom")}
+          />
+
+          <p>{errors.nom?.message}</p>
+        </div>
+
+        <div>
+          <label>Prénom</label>
+
+          <input
+            type="text"
+            {...register("prenom")}
+          />
+
+          <p>{errors.prenom?.message}</p>
+        </div>
+
+        <div>
+          <label>Email</label>
+
+          <input
+            type="email"
+            {...register("email")}
+          />
+
+          <p>{errors.email?.message}</p>
+        </div>
+
+        <div>
+          <label>Username</label>
+
+          <input
+            type="text"
+            {...register("username")}
+          />
+
+          <p>{errors.username?.message}</p>
+        </div>
+
+        <div>
+          <label>Password</label>
+
+          <input
+            type="password"
+            {...register("password")}
+          />
+
+          <p>{errors.password?.message}</p>
+        </div>
+
+        <div>
+          <label>Téléphone</label>
+
+          <input
+            type="text"
+            {...register("telephone")}
+          />
+
+          <p>{errors.telephone?.message}</p>
+        </div>
+
+        <div>
+          <label>Date de naissance</label>
+
+          <input
+            type="date"
+            {...register("dateNaissance")}
+          />
+
+          <p>{errors.dateNaissance?.message}</p>
+        </div>
+
+        <button type="submit">
+          Modifier
+        </button>
+
+      </form>
+
+    </div>
+  );
 }
 
 export default ModifiePatient;

@@ -1,0 +1,142 @@
+import api from "../../api/api";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object({
+  diagnostic: yup
+    .string()
+    .required("Le diagnostic est obligatoire"),
+
+  observations: yup
+    .string()
+    .required("Les observations sont obligatoires"),
+
+  dateCreation: yup
+    .string()
+    .required("La date de création est obligatoire"),
+
+  patientId: yup
+    .number()
+    .typeError("L'id du patient doit être un nombre")
+    .positive("L'id doit être supérieur à 0")
+    .integer("L'id doit être un entier")
+    .required("L'id du patient est obligatoire"),
+});
+
+function ModifieDossier() {
+
+  const [patientId, setPatientId] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      diagnostic: "",
+      observations: "",
+      dateCreation: "",
+      patientId: "",
+    },
+  });
+
+  function getDossier() {
+
+    api.get(`/DossierMedical/${patientId}/rechercherParPatient`)
+      .then((res) => {
+        console.log(res.data);
+
+        reset({
+          diagnostic: res.data.diagnostic,
+          observations: res.data.observations,
+          dateCreation: res.data.dateCreation,
+          patientId: res.data.patientId,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  }
+
+  function onSubmit(data) {
+
+    api.put(`/DossierMedical/${dossierId}`, data)
+      .then((res) => {
+        console.log(res.data);
+        alert("Dossier modifié avec succès !");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  }
+
+  return (
+    <>
+      <h1>Modifier Dossier Médical</h1>
+
+      <label>ID du Patient :</label>
+      <input
+        type="number"
+        value={patientId}
+        onChange={(e) => setPatientId(e.target.value)}
+      />
+
+      <button type="button" onClick={getDossier}>
+        Charger
+      </button>
+
+      <hr />
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+
+        <div>
+          <label>Diagnostic</label>
+          <input
+            type="text"
+            {...register("diagnostic")}
+          />
+          <p>{errors.diagnostic?.message}</p>
+        </div>
+
+        <div>
+          <label>Observations</label>
+          <textarea
+            {...register("observations")}
+          />
+          <p>{errors.observations?.message}</p>
+        </div>
+
+        <div>
+          <label>Date de création</label>
+          <input
+            type="datetime-local"
+            {...register("dateCreation")}
+          />
+          <p>{errors.dateCreation?.message}</p>
+        </div>
+
+        <div>
+          <label>Patient ID</label>
+          <input
+            type="number"
+            {...register("patientId")}
+          />
+          <p>{errors.patientId?.message}</p>
+        </div>
+
+        <button type="submit">
+          Modifier
+        </button>
+
+      </form>
+    </>
+  );
+}
+
+export default ModifieDossier;

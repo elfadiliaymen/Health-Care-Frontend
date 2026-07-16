@@ -1,3 +1,4 @@
+import { useState } from "react";
 import api from "../../api/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -27,22 +28,53 @@ const schema = yup.object({
     .required("L'ID du médecin est obligatoire"),
 });
 
-function AddRendezVous() {
+function ModifieRendezVous() {
+
+  const [rendezVousId, setRendezVousId] = useState("");
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  function onSubmit(data) {
-    api.post("/RendezVous", data)
+  function getRendezVous() {
+
+    api.get(`/RendezVous/${rendezVousId}/consulter`)
       .then((res) => {
         console.log(res.data);
-        reset();
+
+        reset({
+          dateRendezVous: res.data.dateRendezVous?.slice(0, 16),
+          statut: res.data.statut,
+          patientId: res.data.patientId,
+          medecinId: res.data.medecinId,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function onSubmit(data) {
+
+    api.put(`/RendezVous/${rendezVousId}`, data)
+      .then((res) => {
+        console.log(res.data);
+
+        alert("Rendez-vous modifié avec succès.");
+
+        reset({
+          dateRendezVous: "",
+          statut: "",
+          patientId: "",
+          medecinId: "",
+        });
+
+        setRendezVousId("");
       })
       .catch((err) => {
         console.log(err);
@@ -50,18 +82,32 @@ function AddRendezVous() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <div>
 
-      <div>
+      <h1>Modifier un Rendez-vous</h1>
+
+      <label>ID du rendez-vous</label>
+      <input
+        type="number"
+        value={rendezVousId}
+        onChange={(e) => setRendezVousId(e.target.value)}
+      />
+
+      <button type="button" onClick={getRendezVous}>
+        Charger
+      </button>
+
+      <hr />
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+
         <label>Date du rendez-vous</label>
         <input
           type="datetime-local"
           {...register("dateRendezVous")}
         />
         <p>{errors.dateRendezVous?.message}</p>
-      </div>
 
-      <div>
         <label>Statut</label>
         <select {...register("statut")}>
           <option value="">-- Choisir un statut --</option>
@@ -69,32 +115,29 @@ function AddRendezVous() {
           <option value="CONFIRME">Confirmé</option>
         </select>
         <p>{errors.statut?.message}</p>
-      </div>
 
-      <div>
         <label>Patient ID</label>
         <input
           type="number"
           {...register("patientId")}
         />
         <p>{errors.patientId?.message}</p>
-      </div>
 
-      <div>
         <label>Médecin ID</label>
         <input
           type="number"
           {...register("medecinId")}
         />
         <p>{errors.medecinId?.message}</p>
-      </div>
 
-      <button type="submit">
-        Ajouter
-      </button>
+        <button type="submit">
+          Modifier
+        </button>
 
-    </form>
+      </form>
+
+    </div>
   );
 }
 
-export default AddRendezVous;
+export default ModifieRendezVous;
