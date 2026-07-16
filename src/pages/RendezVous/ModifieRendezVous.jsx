@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import api from "../../api/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useParams } from "react-router-dom";
 
 const schema = yup.object({
   dateRendezVous: yup
@@ -30,7 +31,7 @@ const schema = yup.object({
 
 function ModifieRendezVous() {
 
-  const [rendezVousId, setRendezVousId] = useState("");
+  const { rendezVousId } = useParams();
 
   const {
     register,
@@ -45,8 +46,6 @@ function ModifieRendezVous() {
 
     api.get(`/RendezVous/${rendezVousId}/consulter`)
       .then((res) => {
-        console.log(res.data);
-
         reset({
           dateRendezVous: res.data.dateRendezVous?.slice(0, 16),
           statut: res.data.statut,
@@ -58,6 +57,12 @@ function ModifieRendezVous() {
         console.log(err);
       });
   }
+
+  useEffect(() => {
+    if (rendezVousId) {
+      getRendezVous();
+    }
+  }, [rendezVousId]);
 
   function onSubmit(data) {
 
@@ -85,19 +90,6 @@ function ModifieRendezVous() {
     <div>
 
       <h1>Modifier un Rendez-vous</h1>
-
-      <label>ID du rendez-vous</label>
-      <input
-        type="number"
-        value={rendezVousId}
-        onChange={(e) => setRendezVousId(e.target.value)}
-      />
-
-      <button type="button" onClick={getRendezVous}>
-        Charger
-      </button>
-
-      <hr />
 
       <form onSubmit={handleSubmit(onSubmit)}>
 

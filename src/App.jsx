@@ -16,6 +16,10 @@ import RendezvousActions from "./pages/RendezVous/RendezvousActions";
 import ModifieMedecin from "./pages/Medecins/ModifieMedecin";
 import ModifieDossier from "./pages/Dossiers/ModifieDossier";
 import ModifieRendezVous from "./pages/RendezVous/ModifieRendezVous";
+import ConsulterPatient from "./pages/Patients/ConsulterPatient";
+import ConsulterMedecin from "./pages/Medecins/ConsulterMedecin";
+import ConsulterDossier from "./pages/Dossiers/ConsulterDossier";
+import ConsulterRendezVous from "./pages/RendezVous/ConsulterRendezVous";
 
 
 function App() {
@@ -33,20 +37,24 @@ function App() {
 
       <Route path = "/patients" element={<PatientsList />}/>
       <Route path ="/add-patient" element = {<AddPatient />}/>
-      <Route path ="/update-patient" element = {<ModifiePatient />}/>
+      <Route path ="/consulter-patient/:patientId" element = {<ConsulterPatient />}/>
+      <Route path ="/update-patient/:patientId" element = {<ModifiePatient />}/>
 
       <Route path="/medecins" element={<MedecinsList />}/>
       <Route path="/add-medecin" element ={<AddMedecin />}/>
-      <Route path="/update-medecin" element ={<ModifieMedecin />}/>
+      <Route path="/consulter-medecin/:medecinId" element ={<ConsulterMedecin />}/>
+      <Route path="/update-medecin/:medecinId" element ={<ModifieMedecin />}/>
       
       <Route path="/Dossiers" element={<DossierList />}/>
        <Route path="/add-Dossier" element ={<AddDossier />}/>
-      <Route path="/update" element ={<ModifieDossier />}/>
+      <Route path="/consulter-dossier/:dossierId" element ={<ConsulterDossier />}/>
+      <Route path="/update-dossier/:dossierId" element ={<ModifieDossier />}/>
      
 
 <Route path="/rendez-vous" element={<RendesVousList />}/>
       <Route path="/add-rendez-vous" element ={<AddRendezVous />}/>
-      <Route path="/update-rendez-vous" element ={<ModifieRendezVous />}/>
+      <Route path="/consulter-rendez-vous/:rendezVousId" element ={<ConsulterRendezVous />}/>
+      <Route path="/update-rendez-vous/:rendezVousId" element ={<ModifieRendezVous />}/>
   
     </Routes>
      

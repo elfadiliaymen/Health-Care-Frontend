@@ -1,8 +1,9 @@
 import api from "../../api/api";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useParams } from "react-router-dom";
 
 const schema = yup.object({
   nom: yup
@@ -25,7 +26,7 @@ const schema = yup.object({
 });
 
 function ModifieMedecin() {
-  const [medecinId, setMedecinId] = useState("");
+  const { medecinId } = useParams();
 
   const {
     register,
@@ -43,16 +44,9 @@ function ModifieMedecin() {
   });
 
   function getMedecin() {
-    if (!medecinId) {
-      alert("Veuillez saisir un ID.");
-      return;
-    }
-
     api
       .get(`/medecin/${medecinId}/consulter`)
       .then((res) => {
-        console.log(res.data);
-
         reset({
           nom: res.data.nom,
           specialite: res.data.specialite,
@@ -64,6 +58,12 @@ function ModifieMedecin() {
         console.log(err);
       });
   }
+
+  useEffect(() => {
+    if (medecinId) {
+      getMedecin();
+    }
+  }, [medecinId]);
 
   function onSubmit(data) {
     api
@@ -80,21 +80,6 @@ function ModifieMedecin() {
   return (
     <>
       <h1>Modifier Médecin</h1>
-
-      <div>
-        <label>ID du médecin :</label>
-        <input
-          type="number"
-          value={medecinId}
-          onChange={(e) => setMedecinId(e.target.value)}
-        />
-
-        <button type="button" onClick={getMedecin}>
-          Charger
-        </button>
-      </div>
-
-      <hr />
 
       <form onSubmit={handleSubmit(onSubmit)}>
 

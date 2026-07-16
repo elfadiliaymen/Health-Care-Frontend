@@ -7,7 +7,7 @@ function PatientsActions(){
           <nav>
       <Link to="/patients">patients</Link>
      <Link to="/add-patient">add patients</Link>
-    <Link to="/update-patient">update patients</Link>
+    <Link to="/update-patient/:id">update patients</Link>
     </nav>
     )
 

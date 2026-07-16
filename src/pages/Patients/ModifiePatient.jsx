@@ -1,8 +1,10 @@
 import api from "../../api/api";
 import { useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useParams } from "react-router-dom";
 
 const schema = yup.object({
   nom: yup.string().required("Le nom est obligatoire"),
@@ -33,8 +35,7 @@ const schema = yup.object({
 });
 
 function ModifiePatient() {
-
-  const [patientId, setPatientId] = useState("");
+  const {patientId} = useParams();
 
   const {
     register,
@@ -46,20 +47,29 @@ function ModifiePatient() {
   });
 
   function getPatient() {
-
     api.get(`/patient/${patientId}/consulter`)
       .then((res) => {
 
-        console.log(res.data);
+        const patient = res.data;
 
-        // Remplit automatiquement le formulaire
-        reset(res.data);
+        reset({
+          ...patient,
+          dateNaissance: patient?.dateNaissance
+            ? String(patient.dateNaissance).split("T")[0]
+            : "",
+        });
 
       })
       .catch((err) => {
         console.log(err);
       });
   }
+
+  useEffect(() => {
+    if (patientId) {
+      getPatient();
+    }
+  }, [patientId]);
 
   function onSubmit(data) {
 
@@ -81,22 +91,6 @@ function ModifiePatient() {
     <div>
 
       <h1>Modifier Patient</h1>
-
-      <div>
-
-        <label>ID du patient</label>
-
-        <input
-          type="number"
-          value={patientId}
-          onChange={(e) => setPatientId(e.target.value)}
-        />
-
-        <button type="button" onClick={getPatient}>
-          Charger
-        </button>
-
-      </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
 
