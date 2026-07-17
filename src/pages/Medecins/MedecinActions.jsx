@@ -3,25 +3,33 @@
 
 function MedecinActions(){
 
-    return(
-          <div className="page">
+   return (
+    <div className="page">
 
-    <h1>Gestion des médecins</h1>
+        <h1>Gestion des Médecins</h1>
 
-    <div className="actions">
+        <div className="cards-actions">
 
-        <Link to="/medecins">
-            Liste des médecins
-        </Link>
+            <Link className="action-card" to="/medecins">
 
-        <Link to="/add-medecin">
-            Ajouter un médecin
-        </Link>
+                <h2>Liste des Médecins</h2>
+
+                <p>Afficher tous les médecins.</p>
+
+            </Link>
+
+            <Link className="action-card" to="/add-medecin">
+
+                <h2>Ajouter un Médecin</h2>
+
+                <p>Créer un nouveau médecin.</p>
+
+            </Link>
+
+        </div>
 
     </div>
-
-</div>
-    )
+);
 
 
 }

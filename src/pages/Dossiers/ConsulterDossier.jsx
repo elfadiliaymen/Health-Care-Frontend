@@ -16,49 +16,94 @@ function ConsulterDossier() {
     return <div>Chargement...</div>;
   }
 
-  return (
-   <div className="page">
+ return (
 
-    <h1>Détails du dossier</h1>
+<div className="page">
 
     <div className="details-card">
 
-        <div className="detail-row">
-            <span className="detail-title">ID</span>
-            <span>{dossier.id}</span>
+        <div className="details-header">
+
+            <h1>Détails du Dossier Médical</h1>
+
+            <Link
+                className="btn-edit"
+                to={`/update-dossier/${dossier.id}`}
+            >
+                Modifier
+            </Link>
+
         </div>
 
-        <div className="detail-row">
-            <span className="detail-title">Diagnostic</span>
-            <span>{dossier.diagnostic}</span>
-        </div>
+        <div className="details-grid">
 
-        <div className="detail-row">
-            <span className="detail-title">Observations</span>
-            <span>{dossier.observations}</span>
-        </div>
+            <div className="detail">
 
-        <div className="detail-row">
-            <span className="detail-title">Date</span>
-            <span>{dossier.dateCreation}</span>
-        </div>
+                <span className="label">
+                    ID
+                </span>
 
-        <div className="detail-row">
-            <span className="detail-title">Patient ID</span>
-            <span>{dossier.patientId}</span>
+                <span className="value">
+                    {dossier.id}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Diagnostic
+                </span>
+
+                <span className="value">
+                    {dossier.diagnostic}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Observations
+                </span>
+
+                <span className="value">
+                    {dossier.observations}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Date de création
+                </span>
+
+                <span className="value">
+                    {dossier.dateCreation}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Patient ID
+                </span>
+
+                <span className="value">
+                    {dossier.patientId}
+                </span>
+
+            </div>
+
         </div>
 
     </div>
 
-    <Link
-        className="btn"
-        to={`/update-dossier/${dossier.id}`}
-    >
-        Modifier
-    </Link>
-
 </div>
-  );
+
+);
 }
 
 export default ConsulterDossier;

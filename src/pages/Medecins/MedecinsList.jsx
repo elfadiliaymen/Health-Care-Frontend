@@ -34,10 +34,22 @@ function MedecinsList(){
         });
     }
 
-    return(
-          <div className="page">
+   return (
 
-    <h1>Liste des médecins</h1>
+<div className="page">
+
+    <div className="page-header">
+
+        <h1>Liste des Médecins</h1>
+
+        <Link
+            className="btn-primary"
+            to="/add-medecin"
+        >
+            + Ajouter
+        </Link>
+
+    </div>
 
     <div className="table-container">
 
@@ -46,50 +58,78 @@ function MedecinsList(){
             <thead>
 
                 <tr>
+
                     <th>ID</th>
                     <th>Nom</th>
                     <th>Spécialité</th>
                     <th>Email</th>
                     <th>Téléphone</th>
                     <th>Actions</th>
+
                 </tr>
 
             </thead>
 
             <tbody>
 
-                {medecins.map((m) => (
+                {medecins.length > 0 ? (
 
-                    <tr key={m.id}>
+                    medecins.map((medecin) => (
 
-                        <td>{m.id}</td>
-                        <td>{m.nom}</td>
-                        <td>{m.specialite}</td>
-                        <td>{m.email}</td>
-                        <td>{m.telephone}</td>
+                        <tr key={medecin.id}>
 
-                        <td>
+                            <td>{medecin.id}</td>
 
-                            <Link to={`/consulter-medecin/${m.id}`}>
-                                Consulter
-                            </Link>
+                            <td>{medecin.nom}</td>
 
-                            <Link to={`/update-medecin/${m.id}`}>
-                                Modifier
-                            </Link>
+                            <td>{medecin.specialite}</td>
 
-                            <button
-                                className="btn"
-                                onClick={() => handleDelete(m.id)}
-                            >
-                                Supprimer
-                            </button>
+                            <td>{medecin.email}</td>
+
+                            <td>{medecin.telephone}</td>
+
+                            <td className="table-actions">
+
+                                <Link
+                                    className="btn-view"
+                                    to={`/consulter-medecin/${medecin.id}`}
+                                >
+                                    Consulter
+                                </Link>
+
+                                <Link
+                                    className="btn-edit"
+                                    to={`/update-medecin/${medecin.id}`}
+                                >
+                                    Modifier
+                                </Link>
+
+                                <button
+                                    className="btn-delete"
+                                    onClick={() => handleDelete(medecin.id)}
+                                >
+                                    Supprimer
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    ))
+
+                ) : (
+
+                    <tr>
+
+                        <td colSpan="6">
+
+                            Aucun médecin trouvé.
 
                         </td>
 
                     </tr>
 
-                ))}
+                )}
 
             </tbody>
 
@@ -98,7 +138,8 @@ function MedecinsList(){
     </div>
 
 </div>
-    )
+
+);
 
 }
 

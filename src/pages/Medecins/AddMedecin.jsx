@@ -77,62 +77,79 @@ function AddMedecin() {
       });
   }
 
-  return (
-    <div className="page">
+ return (
 
-    <h1>Ajouter un médecin</h1>
+<div className="page">
 
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <div className="form-card">
 
-        <div className="form-group">
-            <label>Nom</label>
-            <input type="text" {...register("nom")} />
-            <p className="error">{errors.nom?.message}</p>
-        </div>
+        <h1>Ajouter un Médecin</h1>
 
-        <div className="form-group">
-            <label>Spécialité</label>
-            <input type="text" {...register("specialite")} />
-            <p className="error">{errors.specialite?.message}</p>
-        </div>
+        <form
+            className="form"
+            onSubmit={handleSubmit(onSubmit)}
+        >
 
-        <div className="form-group">
-            <label>Email</label>
-            <input type="email" {...register("email")} />
-            <p className="error">{errors.email?.message}</p>
-        </div>
+            <div className="form-group">
+                <label>Nom</label>
+                <input type="text" {...register("nom")} />
+                <p className="error">{errors.nom?.message}</p>
+            </div>
 
-        <div className="form-group">
-            <label>Username</label>
-            <input type="text" {...register("username")} />
-            <p className="error">{errors.username?.message}</p>
-        </div>
+            <div className="form-group">
+                <label>Spécialité</label>
+                <input type="text" {...register("specialite")} />
+                <p className="error">{errors.specialite?.message}</p>
+            </div>
 
-        <div className="form-group">
-            <label>Password</label>
-            <input type="password" {...register("password")} />
-            <p className="error">{errors.password?.message}</p>
-        </div>
+            <div className="form-group">
+                <label>Email</label>
+                <input type="email" {...register("email")} />
+                <p className="error">{errors.email?.message}</p>
+            </div>
 
-        <div className="form-group">
-            <label>Role</label>
-            <input type="text" {...register("role")} readOnly />
-        </div>
+            <div className="form-group">
+                <label>Username</label>
+                <input type="text" {...register("username")} />
+                <p className="error">{errors.username?.message}</p>
+            </div>
 
-        <div className="form-group">
-            <label>Téléphone</label>
-            <input type="text" {...register("telephone")} />
-            <p className="error">{errors.telephone?.message}</p>
-        </div>
+            <div className="form-group">
+                <label>Mot de passe</label>
+                <input type="password" {...register("password")} />
+                <p className="error">{errors.password?.message}</p>
+            </div>
 
-        <button className="btn" type="submit">
-            Ajouter
-        </button>
+            <div className="form-group">
+                <label>Rôle</label>
+                <input
+                    type="text"
+                    value="MEDECIN"
+                    readOnly
+                    {...register("role")}
+                />
+            </div>
 
-    </form>
+            <div className="form-group">
+                <label>Téléphone</label>
+                <input type="text" {...register("telephone")} />
+                <p className="error">{errors.telephone?.message}</p>
+            </div>
+
+            <button
+                className="btn-primary"
+                type="submit"
+            >
+                Ajouter
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
-  );
+
+);
 }
 
 export default AddMedecin;

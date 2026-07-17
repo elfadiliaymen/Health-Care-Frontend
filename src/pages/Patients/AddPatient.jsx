@@ -65,65 +65,96 @@ function AddPatient() {
 
   }
 
-  return (
+ return (
 
-    <div className="page">
+<div className="page">
 
-    <h1>Ajouter un patient</h1>
+    <div className="form-card">
 
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <h1>Ajouter un Patient</h1>
 
-        <div className="form-group">
-            <label>Nom</label>
-            <input type="text" {...register("nom")} />
-            <p className="error">{errors.nom?.message}</p>
-        </div>
+        <form
+            className="form"
+            onSubmit={handleSubmit(onSubmit)}
+        >
 
-        <div className="form-group">
-            <label>Prénom</label>
-            <input type="text" {...register("prenom")} />
-            <p className="error">{errors.prenom?.message}</p>
-        </div>
+            <div className="form-group">
+                <label>Nom</label>
+                <input
+                    type="text"
+                    {...register("nom")}
+                />
+                <p className="error">{errors.nom?.message}</p>
+            </div>
 
-        <div className="form-group">
-            <label>Email</label>
-            <input type="email" {...register("email")} />
-            <p className="error">{errors.email?.message}</p>
-        </div>
+            <div className="form-group">
+                <label>Prénom</label>
+                <input
+                    type="text"
+                    {...register("prenom")}
+                />
+                <p className="error">{errors.prenom?.message}</p>
+            </div>
 
-        <div className="form-group">
-            <label>Username</label>
-            <input type="text" {...register("username")} />
-            <p className="error">{errors.username?.message}</p>
-        </div>
+            <div className="form-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    {...register("email")}
+                />
+                <p className="error">{errors.email?.message}</p>
+            </div>
 
-        <div className="form-group">
-            <label>Password</label>
-            <input type="password" {...register("password")} />
-            <p className="error">{errors.password?.message}</p>
-        </div>
+            <div className="form-group">
+                <label>Username</label>
+                <input
+                    type="text"
+                    {...register("username")}
+                />
+                <p className="error">{errors.username?.message}</p>
+            </div>
 
-        <div className="form-group">
-            <label>Téléphone</label>
-            <input type="text" {...register("telephone")} />
-            <p className="error">{errors.telephone?.message}</p>
-        </div>
+            <div className="form-group">
+                <label>Mot de passe</label>
+                <input
+                    type="password"
+                    {...register("password")}
+                />
+                <p className="error">{errors.password?.message}</p>
+            </div>
 
-        <div className="form-group">
-            <label>Date de naissance</label>
-            <input type="date" {...register("dateNaissance")} />
-            <p className="error">{errors.dateNaissance?.message}</p>
-        </div>
+            <div className="form-group">
+                <label>Téléphone</label>
+                <input
+                    type="text"
+                    {...register("telephone")}
+                />
+                <p className="error">{errors.telephone?.message}</p>
+            </div>
 
-        <button className="btn" type="submit">
-            Ajouter
-        </button>
+            <div className="form-group">
+                <label>Date de naissance</label>
+                <input
+                    type="date"
+                    {...register("dateNaissance")}
+                />
+                <p className="error">{errors.dateNaissance?.message}</p>
+            </div>
 
-    </form>
+            <button
+                className="btn-primary"
+                type="submit"
+            >
+                Ajouter
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 
-  );
+);
 }
 
 export default AddPatient;

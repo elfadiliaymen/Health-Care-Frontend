@@ -17,65 +17,68 @@ function ConsulterMedecin() {
   }
 
   return (
-   <div className="page">
 
-    <h1>Détails du médecin</h1>
+<div className="page">
 
     <div className="details-card">
 
-        <div className="detail-row">
-            <span className="detail-title">ID</span>
-            <span>{medecin.id}</span>
+        <div className="details-header">
+
+            <h1>Détails du Médecin</h1>
+
+            <Link
+                className="btn-edit"
+                to={`/update-medecin/${medecin.id}`}
+            >
+                Modifier
+            </Link>
+
         </div>
 
-        <div className="detail-row">
-            <span className="detail-title">Nom</span>
-            <span>{medecin.nom}</span>
-        </div>
+        <div className="details-grid">
 
-        <div className="detail-row">
-            <span className="detail-title">Prénom</span>
-            <span>{medecin.prenom}</span>
-        </div>
+            <div className="detail">
+                <span className="label">ID</span>
+                <span className="value">{medecin.id}</span>
+            </div>
 
-        <div className="detail-row">
-            <span className="detail-title">Spécialité</span>
-            <span>{medecin.specialite}</span>
-        </div>
+            <div className="detail">
+                <span className="label">Nom</span>
+                <span className="value">{medecin.nom}</span>
+            </div>
 
-        <div className="detail-row">
-            <span className="detail-title">Email</span>
-            <span>{medecin.email}</span>
-        </div>
+            <div className="detail">
+                <span className="label">Spécialité</span>
+                <span className="value">{medecin.specialite}</span>
+            </div>
 
-        <div className="detail-row">
-            <span className="detail-title">Username</span>
-            <span>{medecin.username}</span>
-        </div>
+            <div className="detail">
+                <span className="label">Email</span>
+                <span className="value">{medecin.email}</span>
+            </div>
 
-        <div className="detail-row">
-            <span className="detail-title">Password</span>
-            <span>{medecin.password}</span>
-        </div>
+            <div className="detail">
+                <span className="label">Username</span>
+                <span className="value">{medecin.username}</span>
+            </div>
 
-        <div className="detail-row">
-            <span className="detail-title">Role</span>
-            <span>{medecin.role}</span>
-        </div>
+            <div className="detail">
+                <span className="label">Téléphone</span>
+                <span className="value">{medecin.telephone}</span>
+            </div>
 
-        <div className="detail-row">
-            <span className="detail-title">Téléphone</span>
-            <span>{medecin.telephone}</span>
+            <div className="detail">
+                <span className="label">Rôle</span>
+                <span className="value">{medecin.role}</span>
+            </div>
+
         </div>
 
     </div>
 
-    <Link className="btn" to={`/update-medecin/${medecin.id}`}>
-        Modifier
-    </Link>
-
 </div>
-  );
+
+);
 }
 
 export default ConsulterMedecin;

@@ -89,7 +89,7 @@ function ModifieRendezVous() {
   return (
    <div className="page">
 
-    <h1>Modifier un rendez-vous</h1>
+   <h1>Modifier un Rendez-vous</h1>
 
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
 
@@ -132,9 +132,12 @@ function ModifieRendezVous() {
             <p className="error">{errors.medecinId?.message}</p>
         </div>
 
-        <button className="btn" type="submit">
-            Modifier
-        </button>
+    <button
+    className="btn-primary"
+    type="submit"
+>
+    Modifier
+</button>
 
     </form>
 

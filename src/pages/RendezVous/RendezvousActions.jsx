@@ -3,25 +3,45 @@
 
 function RendezvousActions(){
 
-    return(
-         <div className="page">
+   return (
 
-    <h1>Gestion des rendez-vous</h1>
+<div className="page">
 
-    <div className="actions">
+    <h1>Gestion des Rendez-vous</h1>
 
-        <Link to="/rendez-vous">
-            Liste des rendez-vous
+    <div className="cards-actions">
+
+        <Link
+            className="action-card"
+            to="/rendez-vous"
+        >
+
+            <h2>Liste des Rendez-vous</h2>
+
+            <p>
+                Consulter tous les rendez-vous.
+            </p>
+
         </Link>
 
-        <Link to="/add-rendez-vous">
-            Ajouter un rendez-vous
+        <Link
+            className="action-card"
+            to="/add-rendez-vous"
+        >
+
+            <h2>Ajouter un Rendez-vous</h2>
+
+            <p>
+                Programmer un nouveau rendez-vous.
+            </p>
+
         </Link>
 
     </div>
 
 </div>
-    )
+
+);
 
 
 }

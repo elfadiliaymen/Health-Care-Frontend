@@ -16,69 +16,118 @@ function ConsulterPatient() {
     return <div>Chargement...</div>;
   }
 
-  return (
-    <div className="page">
+ return (
 
-    <h1>Détails du patient</h1>
+<div className="page">
 
     <div className="details-card">
 
-        <div className="detail-row">
-            <span className="detail-title">ID</span>
-            <span>{patient.id}</span>
+        <div className="details-header">
+
+            <h1>Détails du Patient</h1>
+
+            <Link
+                className="btn-edit"
+                to={`/update-patient/${patient.id}`}
+            >
+                Modifier
+            </Link>
+
         </div>
 
-        <div className="detail-row">
-            <span className="detail-title">Nom</span>
-            <span>{patient.nom}</span>
-        </div>
+        <div className="details-grid">
 
-        <div className="detail-row">
-            <span className="detail-title">Prénom</span>
-            <span>{patient.prenom}</span>
-        </div>
+            <div className="detail">
 
-        <div className="detail-row">
-            <span className="detail-title">Email</span>
-            <span>{patient.email}</span>
-        </div>
+                <span className="label">
+                    ID
+                </span>
 
-        <div className="detail-row">
-            <span className="detail-title">Username</span>
-            <span>{patient.username}</span>
-        </div>
+                <span className="value">
+                    {patient.id}
+                </span>
 
-        <div className="detail-row">
-            <span className="detail-title">Password</span>
-            <span>{patient.password}</span>
-        </div>
+            </div>
 
-        <div className="detail-row">
-            <span className="detail-title">Rôle</span>
-            <span>{patient.role}</span>
-        </div>
+            <div className="detail">
 
-        <div className="detail-row">
-            <span className="detail-title">Téléphone</span>
-            <span>{patient.telephone}</span>
-        </div>
+                <span className="label">
+                    Nom
+                </span>
 
-        <div className="detail-row">
-            <span className="detail-title">Date de naissance</span>
-            <span>{patient.dateNaissance}</span>
+                <span className="value">
+                    {patient.nom}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Prénom
+                </span>
+
+                <span className="value">
+                    {patient.prenom}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Email
+                </span>
+
+                <span className="value">
+                    {patient.email}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Username
+                </span>
+
+                <span className="value">
+                    {patient.username}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Téléphone
+                </span>
+
+                <span className="value">
+                    {patient.telephone}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Date de naissance
+                </span>
+
+                <span className="value">
+                    {patient.dateNaissance}
+                </span>
+
+            </div>
+
         </div>
 
     </div>
 
-    <Link
-        className="btn"
-        to={`/update-patient/${patient.id}`}
-    >
-        Modifier
-    </Link>
-
 </div>
-  );
+
+);
 }
 
 export default ConsulterPatient;

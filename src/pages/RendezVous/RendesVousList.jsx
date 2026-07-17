@@ -15,13 +15,13 @@ function RendesVousList(){
     }, [])
 
     function handleDelete(rendezVousId) {
-      const confirmed = window.confirm("Voulez-vous supprimer ce rendez-vous ?");
+      const confirmed = window.confirm("Voulez-vous Annuler ce rendez-vous ?");
 
       if (!confirmed) {
         return;
       }
 
-      api.delete(`/RendezVous/${rendezVousId}`)
+      api.put(`/RendezVous/${rendezVousId}/annuler`)
         .then(() => {
           setRendezVous((currentRendezVous) =>
             currentRendezVous.filter((rendezVous) => rendezVous.id !== rendezVousId)
@@ -83,7 +83,7 @@ function RendesVousList(){
                                 className="btn"
                                 onClick={() => handleDelete(r.id)}
                             >
-                                Supprimer
+                                Annuler
                             </button>
 
                         </td>

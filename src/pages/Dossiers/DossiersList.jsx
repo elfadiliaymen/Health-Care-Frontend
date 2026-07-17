@@ -37,93 +37,109 @@ function DossierList(){
         });
     }
 
-   return (
-    <div className="page">
+ return (
 
-        <h1>Liste des dossiers médicaux</h1>
+<div className="page">
 
-        <div className="table-container">
+    <div className="page-header">
 
-            <table className="table">
+        <h1>Liste des Dossiers Médicaux</h1>
 
-                <thead>
+        <Link
+            className="btn-primary"
+            to="/add-dossier"
+        >
+            + Ajouter
+        </Link>
 
-                    <tr>
-                        <th>ID</th>
-                        <th>Diagnostic</th>
-                        <th>Observations</th>
-                        <th>Patient ID</th>
-                        <th>Date de création</th>
-                        <th>Actions</th>
-                    </tr>
+    </div>
 
-                </thead>
+    <div className="table-container">
 
-                <tbody>
+        <table className="table">
 
-                    {dossier.length > 0 ? (
+            <thead>
 
-                        dossier.map((d) => (
+                <tr>
 
-                            <tr key={d.id}>
+                    <th>ID</th>
+                    <th>Diagnostic</th>
+                    <th>Observations</th>
+                    <th>Patient</th>
+                    <th>Date de création</th>
+                    <th>Actions</th>
 
-                                <td>{d.id}</td>
+                </tr>
 
-                                <td>{d.diagnostic}</td>
+            </thead>
 
-                                <td>{d.observations}</td>
+            <tbody>
 
-                                <td>{d.patientId}</td>
+                {dossier.length > 0 ? (
 
-                                <td>{d.dateCreation}</td>
+                    dossier.map((d) => (
 
-                                <td>
+                        <tr key={d.id}>
 
-                                    <Link
-                                        to={`/consulter-dossier/${d.id}`}
-                                    >
-                                        Consulter
-                                    </Link>
+                            <td>{d.id}</td>
 
-                                    <Link
-                                        to={`/update-dossier/${d.id}`}
-                                    >
-                                        Modifier
-                                    </Link>
+                            <td>{d.diagnostic}</td>
 
-                                    <button
-                                        className="btn"
-                                        type="button"
-                                        onClick={() => handleDelete(d.id)}
-                                    >
-                                        Supprimer
-                                    </button>
+                            <td>{d.observations}</td>
 
-                                </td>
+                            <td>{d.patientId}</td>
 
-                            </tr>
+                            <td>{d.dateCreation}</td>
 
-                        ))
+                            <td className="table-actions">
 
-                    ) : (
+                                <Link
+                                    className="btn-view"
+                                    to={`/consulter-dossier/${d.id}`}
+                                >
+                                    Consulter
+                                </Link>
 
-                        <tr>
+                                <Link
+                                    className="btn-edit"
+                                    to={`/update-dossier/${d.id}`}
+                                >
+                                    Modifier
+                                </Link>
 
-                            <td colSpan="6">
-                                Aucun dossier trouvé.
+                                <button
+                                    className="btn-delete"
+                                    onClick={() => handleDelete(d.id)}
+                                >
+                                    Supprimer
+                                </button>
+
                             </td>
 
                         </tr>
 
-                    )}
+                    ))
 
-                </tbody>
+                ) : (
 
-            </table>
+                    <tr>
 
-        </div>
+                        <td colSpan="6">
+                            Aucun dossier trouvé.
+                        </td>
+
+                    </tr>
+
+                )}
+
+            </tbody>
+
+        </table>
 
     </div>
+
+</div>
+
 );
 }
 

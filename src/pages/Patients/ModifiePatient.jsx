@@ -90,7 +90,7 @@ function ModifiePatient() {
   return (
     <div className="page">
 
-    <h1>Modifier un patient</h1>
+  <h1>Modifier un Patient</h1>
 
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
 
@@ -157,9 +157,11 @@ function ModifiePatient() {
             <p className="error">{errors.dateNaissance?.message}</p>
         </div>
 
-        <button className="btn" type="submit">
-            Modifier
-        </button>
+      <button className="btn-primary">
+
+    Modifier
+
+</button>
 
     </form>
 

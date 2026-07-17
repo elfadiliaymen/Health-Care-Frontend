@@ -2,26 +2,43 @@
 
 
 function DossierActions(){
+return (
 
-    return(
-    <div className="page">
+<div className="page">
 
-    <h1>Gestion des dossiers</h1>
+    <h1>Gestion des Dossiers Médicaux</h1>
 
-    <div className="actions">
+    <div className="cards-actions">
 
-        <Link to="/dossiers">
-            Liste des dossiers
+        <Link
+            className="action-card"
+            to="/dossiers"
+        >
+            <h2>Liste des Dossiers</h2>
+
+            <p>
+                Consulter tous les dossiers médicaux.
+            </p>
+
         </Link>
 
-        <Link to="/add-dossier">
-            Ajouter un dossier
+        <Link
+            className="action-card"
+            to="/add-dossier"
+        >
+            <h2>Ajouter un Dossier</h2>
+
+            <p>
+                Créer un nouveau dossier médical.
+            </p>
+
         </Link>
 
     </div>
 
 </div>
-    )
+
+);
 
 }
 

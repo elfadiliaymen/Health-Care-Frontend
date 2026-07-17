@@ -36,10 +36,19 @@ function PatientsList() {
       });
   }
 
-  return (
-   <div className="page">
+return (
 
-    <h1>Liste des patients</h1>
+<div className="page">
+
+    <div className="page-header">
+
+        <h1>Liste des Patients</h1>
+
+        <Link className="btn-primary" to="/add-patient">
+            + Ajouter
+        </Link>
+
+    </div>
 
     <div className="table-container">
 
@@ -48,12 +57,14 @@ function PatientsList() {
             <thead>
 
                 <tr>
+
                     <th>ID</th>
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Email</th>
                     <th>Téléphone</th>
                     <th>Actions</th>
+
                 </tr>
 
             </thead>
@@ -76,19 +87,24 @@ function PatientsList() {
 
                             <td>{patient.telephone}</td>
 
-                            <td>
+                            <td className="table-actions">
 
-                                <Link to={`/consulter-patient/${patient.id}`}>
+                                <Link
+                                    className="btn-view"
+                                    to={`/consulter-patient/${patient.id}`}
+                                >
                                     Consulter
                                 </Link>
 
-                                <Link to={`/update-patient/${patient.id}`}>
+                                <Link
+                                    className="btn-edit"
+                                    to={`/update-patient/${patient.id}`}
+                                >
                                     Modifier
                                 </Link>
 
                                 <button
-                                    className="btn"
-                                    type="button"
+                                    className="btn-delete"
                                     onClick={() => handleDelete(patient.id)}
                                 >
                                     Supprimer
@@ -119,7 +135,8 @@ function PatientsList() {
     </div>
 
 </div>
-  );
+
+);
 }
 
 export default PatientsList;

@@ -57,45 +57,90 @@ function AddDossier() {
 
   return (
 
-  <div className="page">
+<div className="page">
 
-    <h1>Ajouter un dossier médical</h1>
+    <div className="form-card">
 
-    <form className="form">
+        <h1>Ajouter un Dossier Médical</h1>
 
-        <div className="form-group">
-            <label>Diagnostic</label>
-            <input type="text" />
-            <p className="error"></p>
-        </div>
+        <form
+            className="form"
+            onSubmit={handleSubmit(onSubmit)}
+        >
 
-        <div className="form-group">
-            <label>Observations</label>
-            <textarea></textarea>
-            <p className="error"></p>
-        </div>
+            <div className="form-group">
 
-        <div className="form-group">
-            <label>Date de création</label>
-            <input type="datetime-local" />
-            <p className="error"></p>
-        </div>
+                <label>Diagnostic</label>
 
-        <div className="form-group">
-            <label>Patient</label>
-            <input type="number" />
-            <p className="error"></p>
-        </div>
+                <input
+                    type="text"
+                    {...register("diagnostic")}
+                />
 
-        <button className="btn">
-            Ajouter
-        </button>
+                <p className="error">
+                    {errors.diagnostic?.message}
+                </p>
 
-    </form>
+            </div>
+
+            <div className="form-group">
+
+                <label>Observations</label>
+
+                <textarea
+                    {...register("observations")}
+                />
+
+                <p className="error">
+                    {errors.observations?.message}
+                </p>
+
+            </div>
+
+            <div className="form-group">
+
+                <label>Date de création</label>
+
+                <input
+                    type="datetime-local"
+                    {...register("dateCreation")}
+                />
+
+                <p className="error">
+                    {errors.dateCreation?.message}
+                </p>
+
+            </div>
+
+            <div className="form-group">
+
+                <label>Patient ID</label>
+
+                <input
+                    type="number"
+                    {...register("patientId")}
+                />
+
+                <p className="error">
+                    {errors.patientId?.message}
+                </p>
+
+            </div>
+
+            <button
+                className="btn-primary"
+                type="submit"
+            >
+                Ajouter
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 
-  );
+);
 }
 
 export default AddDossier;

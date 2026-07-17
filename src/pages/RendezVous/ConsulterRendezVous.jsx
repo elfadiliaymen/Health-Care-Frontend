@@ -17,48 +17,93 @@ function ConsulterRendezVous() {
   }
 
   return (
-   <div className="page">
 
-    <h1>Détails du rendez-vous</h1>
+<div className="page">
 
     <div className="details-card">
 
-        <div className="detail-row">
-            <span className="detail-title">ID</span>
-            <span>{rendezVous.id}</span>
+        <div className="details-header">
+
+            <h1>Détails du Rendez-vous</h1>
+
+            <Link
+                className="btn-edit"
+                to={`/update-rendez-vous/${rendezVous.id}`}
+            >
+                Modifier
+            </Link>
+
         </div>
 
-        <div className="detail-row">
-            <span className="detail-title">Date du rendez-vous</span>
-            <span>{rendezVous.dateRendezVous}</span>
-        </div>
+        <div className="details-grid">
 
-        <div className="detail-row">
-            <span className="detail-title">Statut</span>
-            <span>{rendezVous.statut}</span>
-        </div>
+            <div className="detail">
 
-        <div className="detail-row">
-            <span className="detail-title">Patient ID</span>
-            <span>{rendezVous.patientId}</span>
-        </div>
+                <span className="label">
+                    ID
+                </span>
 
-        <div className="detail-row">
-            <span className="detail-title">Médecin ID</span>
-            <span>{rendezVous.medecinId}</span>
+                <span className="value">
+                    {rendezVous.id}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Date
+                </span>
+
+                <span className="value">
+                    {rendezVous.dateRendezVous}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Statut
+                </span>
+
+                <span className="value">
+                    {rendezVous.statut}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Patient ID
+                </span>
+
+                <span className="value">
+                    {rendezVous.patientId}
+                </span>
+
+            </div>
+
+            <div className="detail">
+
+                <span className="label">
+                    Médecin ID
+                </span>
+
+                <span className="value">
+                    {rendezVous.medecinId}
+                </span>
+
+            </div>
+
         </div>
 
     </div>
 
-    <Link
-        className="btn"
-        to={`/update-rendez-vous/${rendezVous.id}`}
-    >
-        Modifier
-    </Link>
-
 </div>
-  );
+
+);
 }
 
 export default ConsulterRendezVous;

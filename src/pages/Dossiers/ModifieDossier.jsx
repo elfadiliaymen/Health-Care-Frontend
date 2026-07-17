@@ -82,8 +82,7 @@ function ModifieDossier() {
 
   return (
    <div className="page">
-
-    <h1>Modifier un dossier médical</h1>
+<h1>Modifier un Dossier Médical</h1>
 
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
 
@@ -122,9 +121,12 @@ function ModifieDossier() {
             <p className="error">{errors.patientId?.message}</p>
         </div>
 
-        <button className="btn" type="submit">
-            Modifier
-        </button>
+       <button
+    className="btn-primary"
+    type="submit"
+>
+    Modifier
+</button>
 
     </form>
 
