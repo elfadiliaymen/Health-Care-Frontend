@@ -78,41 +78,55 @@ function ModifieMedecin() {
   }
 
   return (
-    <>
-      <h1>Modifier Médecin</h1>
+    <div className="page">
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <h1>Modifier un médecin</h1>
 
-        <div>
-          <label>Nom</label>
-          <input type="text" {...register("nom")} />
-          <p>{errors.nom?.message}</p>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+
+        <div className="form-group">
+            <label>Nom</label>
+            <input
+                type="text"
+                {...register("nom")}
+            />
+            <p className="error">{errors.nom?.message}</p>
         </div>
 
-        <div>
-          <label>Spécialité</label>
-          <input type="text" {...register("specialite")} />
-          <p>{errors.specialite?.message}</p>
+        <div className="form-group">
+            <label>Spécialité</label>
+            <input
+                type="text"
+                {...register("specialite")}
+            />
+            <p className="error">{errors.specialite?.message}</p>
         </div>
 
-        <div>
-          <label>Email</label>
-          <input type="email" {...register("email")} />
-          <p>{errors.email?.message}</p>
+        <div className="form-group">
+            <label>Email</label>
+            <input
+                type="email"
+                {...register("email")}
+            />
+            <p className="error">{errors.email?.message}</p>
         </div>
 
-        <div>
-          <label>Téléphone</label>
-          <input type="text" {...register("telephone")} />
-          <p>{errors.telephone?.message}</p>
+        <div className="form-group">
+            <label>Téléphone</label>
+            <input
+                type="text"
+                {...register("telephone")}
+            />
+            <p className="error">{errors.telephone?.message}</p>
         </div>
 
-        <button type="submit">
-          Modifier
+        <button className="btn" type="submit">
+            Modifier
         </button>
 
-      </form>
-    </>
+    </form>
+
+</div>
   );
 }
 

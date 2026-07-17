@@ -37,48 +37,88 @@ function PatientsList() {
   }
 
   return (
-    <div className="container">
-      <h1>Liste des Patients</h1>
+   <div className="page">
 
-      <table border="1" cellPadding="10" cellSpacing="0">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Email</th>
-            <th>Téléphone</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+    <h1>Liste des patients</h1>
 
-        <tbody>
-          {patients.length > 0 ? (
-            patients.map((patient) => (
-              <tr key={patient.id}>
-                <td>{patient.id}</td>
-                <td>{patient.nom}</td>
-                <td>{patient.prenom}</td>
-                <td>{patient.email}</td>
-                <td>{patient.telephone}</td>
-                <td>
-                  <Link to={`/consulter-patient/${patient.id}`}>consulter</Link>{" "}
-                  <Link to={`/update-patient/${patient.id}`}>modifier</Link>
-                  {" "}
-                  <button type="button" onClick={() => handleDelete(patient.id)}>
-                    supprimer
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="6">Aucun patient trouvé.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+    <div className="table-container">
+
+        <table className="table">
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {patients.length > 0 ? (
+
+                    patients.map((patient) => (
+
+                        <tr key={patient.id}>
+
+                            <td>{patient.id}</td>
+
+                            <td>{patient.nom}</td>
+
+                            <td>{patient.prenom}</td>
+
+                            <td>{patient.email}</td>
+
+                            <td>{patient.telephone}</td>
+
+                            <td>
+
+                                <Link to={`/consulter-patient/${patient.id}`}>
+                                    Consulter
+                                </Link>
+
+                                <Link to={`/update-patient/${patient.id}`}>
+                                    Modifier
+                                </Link>
+
+                                <button
+                                    className="btn"
+                                    type="button"
+                                    onClick={() => handleDelete(patient.id)}
+                                >
+                                    Supprimer
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    ))
+
+                ) : (
+
+                    <tr>
+
+                        <td colSpan="6">
+                            Aucun patient trouvé.
+                        </td>
+
+                    </tr>
+
+                )}
+
+            </tbody>
+
+        </table>
+
     </div>
+
+</div>
   );
 }
 

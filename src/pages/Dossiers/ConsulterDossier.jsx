@@ -17,21 +17,47 @@ function ConsulterDossier() {
   }
 
   return (
-    <div>
-      <h1>Détails du dossier médical</h1>
-      <table border="1" cellPadding="10" cellSpacing="0">
-        <tbody>
-          <tr><th>ID</th><td>{dossier.id}</td></tr>
-          <tr><th>Diagnostic</th><td>{dossier.diagnostic}</td></tr>
-          <tr><th>Observations</th><td>{dossier.observations}</td></tr>
-          <tr><th>Date de création</th><td>{dossier.dateCreation}</td></tr>
-          <tr><th>Patient ID</th><td>{dossier.patientId}</td></tr>
-        </tbody>
-      </table>
-      <p>
-        <Link to={`/update-dossier/${dossier.id}`}>modifier</Link>
-      </p>
+   <div className="page">
+
+    <h1>Détails du dossier</h1>
+
+    <div className="details-card">
+
+        <div className="detail-row">
+            <span className="detail-title">ID</span>
+            <span>{dossier.id}</span>
+        </div>
+
+        <div className="detail-row">
+            <span className="detail-title">Diagnostic</span>
+            <span>{dossier.diagnostic}</span>
+        </div>
+
+        <div className="detail-row">
+            <span className="detail-title">Observations</span>
+            <span>{dossier.observations}</span>
+        </div>
+
+        <div className="detail-row">
+            <span className="detail-title">Date</span>
+            <span>{dossier.dateCreation}</span>
+        </div>
+
+        <div className="detail-row">
+            <span className="detail-title">Patient ID</span>
+            <span>{dossier.patientId}</span>
+        </div>
+
     </div>
+
+    <Link
+        className="btn"
+        to={`/update-dossier/${dossier.id}`}
+    >
+        Modifier
+    </Link>
+
+</div>
   );
 }
 

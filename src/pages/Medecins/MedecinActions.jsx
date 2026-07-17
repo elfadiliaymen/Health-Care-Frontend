@@ -4,11 +4,23 @@
 function MedecinActions(){
 
     return(
-          <nav>
-      <Link to="/medecins">medecins</Link>
-     <Link to="/add-medecin">add medecins</Link>
-    <Link to="/update-medecin">update medecins</Link>
-    </nav>
+          <div className="page">
+
+    <h1>Gestion des médecins</h1>
+
+    <div className="actions">
+
+        <Link to="/medecins">
+            Liste des médecins
+        </Link>
+
+        <Link to="/add-medecin">
+            Ajouter un médecin
+        </Link>
+
+    </div>
+
+</div>
     )
 
 

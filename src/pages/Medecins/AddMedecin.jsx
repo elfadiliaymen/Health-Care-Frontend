@@ -78,77 +78,60 @@ function AddMedecin() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="page">
 
-      <div>
-        <label>Nom</label>
-        <input
-          type="text"
-          {...register("nom")}
-        />
-        <p>{errors.nom?.message}</p>
-      </div>
+    <h1>Ajouter un médecin</h1>
 
-      <div>
-        <label>Spécialité</label>
-        <input
-          type="text"
-          {...register("specialite")}
-        />
-        <p>{errors.specialite?.message}</p>
-      </div>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
 
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          {...register("email")}
-        />
-        <p>{errors.email?.message}</p>
-      </div>
+        <div className="form-group">
+            <label>Nom</label>
+            <input type="text" {...register("nom")} />
+            <p className="error">{errors.nom?.message}</p>
+        </div>
 
-      <div>
-        <label>Username</label>
-        <input
-          type="text"
-          {...register("username")}
-        />
-        <p>{errors.username?.message}</p>
-      </div>
+        <div className="form-group">
+            <label>Spécialité</label>
+            <input type="text" {...register("specialite")} />
+            <p className="error">{errors.specialite?.message}</p>
+        </div>
 
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          {...register("password")}
-        />
-        <p>{errors.password?.message}</p>
-      </div>
+        <div className="form-group">
+            <label>Email</label>
+            <input type="email" {...register("email")} />
+            <p className="error">{errors.email?.message}</p>
+        </div>
 
-      <div>
-        <label>Role</label>
-        <input
-          type="text"
-          {...register("role")}
-          readOnly
-        />
-        <p>{errors.role?.message}</p>
-      </div>
+        <div className="form-group">
+            <label>Username</label>
+            <input type="text" {...register("username")} />
+            <p className="error">{errors.username?.message}</p>
+        </div>
 
-      <div>
-        <label>Téléphone</label>
-        <input
-          type="text"
-          {...register("telephone")}
-        />
-        <p>{errors.telephone?.message}</p>
-      </div>
+        <div className="form-group">
+            <label>Password</label>
+            <input type="password" {...register("password")} />
+            <p className="error">{errors.password?.message}</p>
+        </div>
 
-      <button type="submit">
-        Ajouter
-      </button>
+        <div className="form-group">
+            <label>Role</label>
+            <input type="text" {...register("role")} readOnly />
+        </div>
+
+        <div className="form-group">
+            <label>Téléphone</label>
+            <input type="text" {...register("telephone")} />
+            <p className="error">{errors.telephone?.message}</p>
+        </div>
+
+        <button className="btn" type="submit">
+            Ajouter
+        </button>
 
     </form>
+
+</div>
   );
 }
 

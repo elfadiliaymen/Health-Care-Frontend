@@ -81,52 +81,54 @@ function ModifieDossier() {
   }
 
   return (
-    <>
-      <h1>Modifier Dossier Médical</h1>
+   <div className="page">
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <h1>Modifier un dossier médical</h1>
 
-        <div>
-          <label>Diagnostic</label>
-          <input
-            type="text"
-            {...register("diagnostic")}
-          />
-          <p>{errors.diagnostic?.message}</p>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+
+        <div className="form-group">
+            <label>Diagnostic</label>
+            <input
+                type="text"
+                {...register("diagnostic")}
+            />
+            <p className="error">{errors.diagnostic?.message}</p>
         </div>
 
-        <div>
-          <label>Observations</label>
-          <textarea
-            {...register("observations")}
-          />
-          <p>{errors.observations?.message}</p>
+        <div className="form-group">
+            <label>Observations</label>
+            <textarea
+                {...register("observations")}
+            />
+            <p className="error">{errors.observations?.message}</p>
         </div>
 
-        <div>
-          <label>Date de création</label>
-          <input
-            type="datetime-local"
-            {...register("dateCreation")}
-          />
-          <p>{errors.dateCreation?.message}</p>
+        <div className="form-group">
+            <label>Date de création</label>
+            <input
+                type="datetime-local"
+                {...register("dateCreation")}
+            />
+            <p className="error">{errors.dateCreation?.message}</p>
         </div>
 
-        <div>
-          <label>Patient ID</label>
-          <input
-            type="number"
-            {...register("patientId")}
-          />
-          <p>{errors.patientId?.message}</p>
+        <div className="form-group">
+            <label>Patient ID</label>
+            <input
+                type="number"
+                {...register("patientId")}
+            />
+            <p className="error">{errors.patientId?.message}</p>
         </div>
 
-        <button type="submit">
-          Modifier
+        <button className="btn" type="submit">
+            Modifier
         </button>
 
-      </form>
-    </>
+    </form>
+
+</div>
   );
 }
 

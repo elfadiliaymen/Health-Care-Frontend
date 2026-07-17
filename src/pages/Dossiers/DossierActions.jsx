@@ -4,11 +4,23 @@
 function DossierActions(){
 
     return(
-          <nav>
-      <Link to="/Dossiers">Dossiers</Link>
-     <Link to="/add-Dossier">add Dossier</Link>
-    <Link to="/update-Dossier">update Dossier</Link>
-    </nav>
+    <div className="page">
+
+    <h1>Gestion des dossiers</h1>
+
+    <div className="actions">
+
+        <Link to="/dossiers">
+            Liste des dossiers
+        </Link>
+
+        <Link to="/add-dossier">
+            Ajouter un dossier
+        </Link>
+
+    </div>
+
+</div>
     )
 
 }

@@ -57,48 +57,43 @@ function AddDossier() {
 
   return (
 
-    <form onSubmit={handleSubmit(onSubmit)}>
+  <div className="page">
 
-      <div>
-        <label>Diagnostic</label>
-        <input
-          type="text"
-          {...register("diagnostic")}
-        />
-        <p>{errors.diagnostic?.message}</p>
-      </div>
+    <h1>Ajouter un dossier médical</h1>
 
-      <div>
-        <label>Observations</label>
-        <textarea
-          {...register("observations")}
-        />
-        <p>{errors.observations?.message}</p>
-      </div>
+    <form className="form">
 
-      <div>
-        <label>Date de création</label>
-        <input
-          type="datetime-local"
-          {...register("dateCreation")}
-        />
-        <p>{errors.dateCreation?.message}</p>
-      </div>
+        <div className="form-group">
+            <label>Diagnostic</label>
+            <input type="text" />
+            <p className="error"></p>
+        </div>
 
-      <div>
-        <label>Patient ID</label>
-        <input
-          type="number"
-          {...register("patientId")}
-        />
-        <p>{errors.patientId?.message}</p>
-      </div>
+        <div className="form-group">
+            <label>Observations</label>
+            <textarea></textarea>
+            <p className="error"></p>
+        </div>
 
-      <button type="submit">
-        Ajouter
-      </button>
+        <div className="form-group">
+            <label>Date de création</label>
+            <input type="datetime-local" />
+            <p className="error"></p>
+        </div>
+
+        <div className="form-group">
+            <label>Patient</label>
+            <input type="number" />
+            <p className="error"></p>
+        </div>
+
+        <button className="btn">
+            Ajouter
+        </button>
 
     </form>
+
+</div>
 
   );
 }

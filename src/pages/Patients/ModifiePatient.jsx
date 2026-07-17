@@ -88,96 +88,82 @@ function ModifiePatient() {
   }
 
   return (
-    <div>
+    <div className="page">
 
-      <h1>Modifier Patient</h1>
+    <h1>Modifier un patient</h1>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
 
-        <div>
-          <label>Nom</label>
-
-          <input
-            type="text"
-            {...register("nom")}
-          />
-
-          <p>{errors.nom?.message}</p>
+        <div className="form-group">
+            <label>Nom</label>
+            <input
+                type="text"
+                {...register("nom")}
+            />
+            <p className="error">{errors.nom?.message}</p>
         </div>
 
-        <div>
-          <label>Prénom</label>
-
-          <input
-            type="text"
-            {...register("prenom")}
-          />
-
-          <p>{errors.prenom?.message}</p>
+        <div className="form-group">
+            <label>Prénom</label>
+            <input
+                type="text"
+                {...register("prenom")}
+            />
+            <p className="error">{errors.prenom?.message}</p>
         </div>
 
-        <div>
-          <label>Email</label>
-
-          <input
-            type="email"
-            {...register("email")}
-          />
-
-          <p>{errors.email?.message}</p>
+        <div className="form-group">
+            <label>Email</label>
+            <input
+                type="email"
+                {...register("email")}
+            />
+            <p className="error">{errors.email?.message}</p>
         </div>
 
-        <div>
-          <label>Username</label>
-
-          <input
-            type="text"
-            {...register("username")}
-          />
-
-          <p>{errors.username?.message}</p>
+        <div className="form-group">
+            <label>Username</label>
+            <input
+                type="text"
+                {...register("username")}
+            />
+            <p className="error">{errors.username?.message}</p>
         </div>
 
-        <div>
-          <label>Password</label>
-
-          <input
-            type="password"
-            {...register("password")}
-          />
-
-          <p>{errors.password?.message}</p>
+        <div className="form-group">
+            <label>Password</label>
+            <input
+                type="password"
+                {...register("password")}
+            />
+            <p className="error">{errors.password?.message}</p>
         </div>
 
-        <div>
-          <label>Téléphone</label>
-
-          <input
-            type="text"
-            {...register("telephone")}
-          />
-
-          <p>{errors.telephone?.message}</p>
+        <div className="form-group">
+            <label>Téléphone</label>
+            <input
+                type="text"
+                {...register("telephone")}
+            />
+            <p className="error">{errors.telephone?.message}</p>
         </div>
 
-        <div>
-          <label>Date de naissance</label>
-
-          <input
-            type="date"
-            {...register("dateNaissance")}
-          />
-
-          <p>{errors.dateNaissance?.message}</p>
+        <div className="form-group">
+            <label>Date de naissance</label>
+            <input
+                type="date"
+                {...register("dateNaissance")}
+            />
+            <p className="error">{errors.dateNaissance?.message}</p>
         </div>
 
-        <button type="submit">
-          Modifier
+        <button className="btn" type="submit">
+            Modifier
         </button>
 
-      </form>
+    </form>
 
-    </div>
+</div>
   );
 }
 

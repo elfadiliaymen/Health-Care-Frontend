@@ -87,48 +87,58 @@ function ModifieRendezVous() {
   }
 
   return (
-    <div>
+   <div className="page">
 
-      <h1>Modifier un Rendez-vous</h1>
+    <h1>Modifier un rendez-vous</h1>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
 
-        <label>Date du rendez-vous</label>
-        <input
-          type="datetime-local"
-          {...register("dateRendezVous")}
-        />
-        <p>{errors.dateRendezVous?.message}</p>
+        <div className="form-group">
+            <label>Date du rendez-vous</label>
+            <input
+                type="datetime-local"
+                {...register("dateRendezVous")}
+            />
+            <p className="error">{errors.dateRendezVous?.message}</p>
+        </div>
 
-        <label>Statut</label>
-        <select {...register("statut")}>
-          <option value="">-- Choisir un statut --</option>
-          <option value="PLANIFIE">Planifié</option>
-          <option value="CONFIRME">Confirmé</option>
-        </select>
-        <p>{errors.statut?.message}</p>
+        <div className="form-group">
+            <label>Statut</label>
 
-        <label>Patient ID</label>
-        <input
-          type="number"
-          {...register("patientId")}
-        />
-        <p>{errors.patientId?.message}</p>
+            <select {...register("statut")}>
+                <option value="">Choisir un statut</option>
+                <option value="PLANIFIE">Planifié</option>
+                <option value="CONFIRME">Confirmé</option>
+            </select>
 
-        <label>Médecin ID</label>
-        <input
-          type="number"
-          {...register("medecinId")}
-        />
-        <p>{errors.medecinId?.message}</p>
+            <p className="error">{errors.statut?.message}</p>
+        </div>
 
-        <button type="submit">
-          Modifier
+        <div className="form-group">
+            <label>Patient ID</label>
+            <input
+                type="number"
+                {...register("patientId")}
+            />
+            <p className="error">{errors.patientId?.message}</p>
+        </div>
+
+        <div className="form-group">
+            <label>Médecin ID</label>
+            <input
+                type="number"
+                {...register("medecinId")}
+            />
+            <p className="error">{errors.medecinId?.message}</p>
+        </div>
+
+        <button className="btn" type="submit">
+            Modifier
         </button>
 
-      </form>
+    </form>
 
-    </div>
+</div>
   );
 }
 
