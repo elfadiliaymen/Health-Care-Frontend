@@ -54,11 +54,7 @@ function ConsulterDossier() {
 
                 <div className="patient-profile">
 
-                    <div className="patient-avatar">
-
-                        📄
-
-                    </div>
+                    
 
                     <div>
 
