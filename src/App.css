@@ -123,6 +123,7 @@ select{
     background:#ffffff;
 
     border-bottom:1px solid #ddd;
+    height: 100px;
 }
 
 .logo{
@@ -603,4 +604,203 @@ a:hover,
 a:active{
     text-decoration: none;
     color: inherit;
+}
+
+/*======================================================
+PATIENT SHEET
+======================================================*/
+
+.patient-sheet{
+
+    width:850px;
+
+    margin:auto;
+
+    border:1px solid #ddd;
+
+    background:white;
+}
+
+.sheet-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:25px;
+
+    border-bottom:1px solid #ddd;
+}
+
+.sheet-header h1{
+
+    margin-bottom:5px;
+
+    color:#337ab7;
+}
+
+.sheet-header p{
+
+    color:#777;
+}
+
+.patient-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+    padding:30px;
+
+    border-bottom:1px solid #ddd;
+}
+
+.patient-avatar{
+
+    width:90px;
+
+    height:90px;
+
+    border:1px solid #ddd;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    color:#337ab7;
+
+    font-weight:bold;
+
+    background:#f8f8f8;
+}
+
+.patient-profile h2{
+
+    margin-bottom:8px;
+
+    color:#333;
+}
+
+.patient-profile p{
+
+    color:#666;
+}
+
+.patient-infos{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+}
+
+.info-box{
+
+    padding:22px;
+
+    border-right:1px solid #ddd;
+
+    border-bottom:1px solid #ddd;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.info-box:nth-child(even){
+
+    border-right:none;
+}
+
+.info-box span{
+
+    color:#888;
+
+    font-size:14px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+}
+
+.info-box strong{
+
+    font-size:18px;
+
+    color:#333;
+
+    font-weight:600;
+}
+
+@media(max-width:768px){
+
+.patient-sheet{
+
+    width:100%;
+}
+
+.patient-profile{
+
+    flex-direction:column;
+
+    text-align:center;
+}
+
+.patient-infos{
+
+    grid-template-columns:1fr;
+}
+
+.info-box{
+
+    border-right:none;
+}
+
+}
+
+/*======================================================
+DOSSIER
+======================================================*/
+
+.info-box strong{
+
+    word-break: break-word;
+}
+
+.info-box:last-child{
+
+    border-bottom:none;
+}
+
+.info-box:nth-last-child(2){
+
+    border-bottom:none;
+}
+
+/*======================================================
+RENDEZ-VOUS STATUS
+======================================================*/
+
+.status-planifie{
+    color:#337ab7;
+    font-weight:bold;
+}
+
+.status-termine{
+    color:#5cb85c;
+    font-weight:bold;
+}
+
+.status-annule{
+    color:#d9534f;
+    font-weight:bold;
 }

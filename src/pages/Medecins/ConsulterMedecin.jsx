@@ -3,82 +3,149 @@ import { useParams, Link } from "react-router-dom";
 import api from "../../api/api";
 
 function ConsulterMedecin() {
-  const { medecinId } = useParams();
-  const [medecin, setMedecin] = useState(null);
 
-  useEffect(() => {
-    api.get(`/medecin/${medecinId}/consulter`)
-      .then((res) => setMedecin(res.data))
-      .catch((error) => console.log(error));
-  }, [medecinId]);
+    const { medecinId } = useParams();
+    const [medecin, setMedecin] = useState(null);
 
-  if (!medecin) {
-    return <div>Chargement...</div>;
-  }
+    useEffect(() => {
 
-  return (
+        api.get(`/medecin/${medecinId}/consulter`)
+            .then((res) => setMedecin(res.data))
+            .catch((err) => console.log(err));
 
-<div className="page">
+    }, [medecinId]);
 
-    <div className="details-card">
+    if (!medecin) {
+        return (
+            <div className="page">
+                <h2>Chargement...</h2>
+            </div>
+        );
+    }
 
-        <div className="details-header">
+    return (
 
-            <h1>Détails du Médecin</h1>
+        <div className="page">
 
-            <Link
-                className="btn-edit"
-                to={`/update-medecin/${medecin.id}`}
-            >
-                Modifier
-            </Link>
+            <div className="patient-sheet">
+
+                <div className="sheet-header">
+
+                    <div>
+
+                        <h1>Fiche du Médecin</h1>
+
+                        <p>
+                            Informations professionnelles
+                        </p>
+
+                    </div>
+
+                    <Link
+                        to={`/update-medecin/${medecin.id}`}
+                        className="btn-edit"
+                    >
+                        Modifier
+                    </Link>
+
+                </div>
+
+
+                <div className="patient-profile">
+
+                    <div className="patient-avatar">
+
+                        {medecin.nom?.charAt(0).toUpperCase()}
+
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Dr. {medecin.nom}
+                        </h2>
+
+                        <p>
+                            {medecin.specialite}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div className="patient-infos">
+
+                    <div className="info-box">
+
+                        <span>ID</span>
+
+                        <strong>{medecin.id}</strong>
+
+                    </div>
+
+
+                    <div className="info-box">
+
+                        <span>Nom</span>
+
+                        <strong>{medecin.nom}</strong>
+
+                    </div>
+
+
+                    <div className="info-box">
+
+                        <span>Spécialité</span>
+
+                        <strong>{medecin.specialite}</strong>
+
+                    </div>
+
+
+                    <div className="info-box">
+
+                        <span>Email</span>
+
+                        <strong>{medecin.email}</strong>
+
+                    </div>
+
+
+                    <div className="info-box">
+
+                        <span>Username</span>
+
+                        <strong>{medecin.username}</strong>
+
+                    </div>
+
+
+                    <div className="info-box">
+
+                        <span>Téléphone</span>
+
+                        <strong>{medecin.telephone}</strong>
+
+                    </div>
+
+
+                    <div className="info-box">
+
+                        <span>Rôle</span>
+
+                        <strong>{medecin.role}</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div className="details-grid">
+    );
 
-            <div className="detail">
-                <span className="label">ID</span>
-                <span className="value">{medecin.id}</span>
-            </div>
-
-            <div className="detail">
-                <span className="label">Nom</span>
-                <span className="value">{medecin.nom}</span>
-            </div>
-
-            <div className="detail">
-                <span className="label">Spécialité</span>
-                <span className="value">{medecin.specialite}</span>
-            </div>
-
-            <div className="detail">
-                <span className="label">Email</span>
-                <span className="value">{medecin.email}</span>
-            </div>
-
-            <div className="detail">
-                <span className="label">Username</span>
-                <span className="value">{medecin.username}</span>
-            </div>
-
-            <div className="detail">
-                <span className="label">Téléphone</span>
-                <span className="value">{medecin.telephone}</span>
-            </div>
-
-            <div className="detail">
-                <span className="label">Rôle</span>
-                <span className="value">{medecin.role}</span>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-);
 }
 
 export default ConsulterMedecin;

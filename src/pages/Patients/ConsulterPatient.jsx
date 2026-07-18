@@ -3,131 +3,161 @@ import { useParams, Link } from "react-router-dom";
 import api from "../../api/api";
 
 function ConsulterPatient() {
-  const { patientId } = useParams();
-  const [patient, setPatient] = useState(null);
 
-  useEffect(() => {
-    api.get(`/patient/${patientId}/consulter`)
-      .then((res) => setPatient(res.data))
-      .catch((error) => console.log(error));
-  }, [patientId]);
+    const { patientId } = useParams();
 
-  if (!patient) {
-    return <div>Chargement...</div>;
-  }
+    const [patient, setPatient] = useState(null);
 
- return (
+    useEffect(() => {
 
-<div className="page">
+        api.get(`/patient/${patientId}/consulter`)
+            .then((res) => {
 
-    <div className="details-card">
+                setPatient(res.data);
 
-        <div className="details-header">
+            })
+            .catch((error) => {
 
-            <h1>Détails du Patient</h1>
+                console.log(error);
 
-            <Link
-                className="btn-edit"
-                to={`/update-patient/${patient.id}`}
-            >
-                Modifier
-            </Link>
+            });
+
+    }, [patientId]);
+
+    if (!patient) {
+
+        return (
+
+            <div className="page">
+
+                <h2>Chargement...</h2>
+
+            </div>
+
+        );
+
+    }
+
+    return (
+
+        <div className="page">
+
+            <div className="patient-sheet">
+
+                <div className="sheet-header">
+
+                    <div>
+
+                        <h1>Fiche Patient</h1>
+
+                        <p>
+                            Consultation des informations du patient
+                        </p>
+
+                    </div>
+
+                    <Link
+                        className="btn-edit"
+                        to={`/update-patient/${patient.id}`}
+                    >
+                        Modifier
+                    </Link>
+
+                </div>
+
+                <div className="patient-profile">
+
+                    <div className="patient-avatar">
+
+                        {patient.prenom?.charAt(0)}
+                        {patient.nom?.charAt(0)}
+
+                    </div>
+
+                    <div className="patient-title">
+
+                        <h2>
+
+                            {patient.prenom} {patient.nom}
+
+                        </h2>
+
+                        <span>
+
+                            Patient N° {patient.id}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div className="patient-infos">
+
+                    <div className="info-box">
+
+                        <span>ID</span>
+
+                        <strong>{patient.id}</strong>
+
+                    </div>
+
+                    <div className="info-box">
+
+                        <span>Nom</span>
+
+                        <strong>{patient.nom}</strong>
+
+                    </div>
+
+                    <div className="info-box">
+
+                        <span>Prénom</span>
+
+                        <strong>{patient.prenom}</strong>
+
+                    </div>
+
+                    <div className="info-box">
+
+                        <span>Email</span>
+
+                        <strong>{patient.email}</strong>
+
+                    </div>
+
+                    <div className="info-box">
+
+                        <span>Nom d'utilisateur</span>
+
+                        <strong>{patient.username}</strong>
+
+                    </div>
+
+                    <div className="info-box">
+
+                        <span>Téléphone</span>
+
+                        <strong>{patient.telephone}</strong>
+
+                    </div>
+
+                    <div className="info-box">
+
+                        <span>Date de naissance</span>
+
+                        <strong>{patient.dateNaissance}</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div className="details-grid">
+    );
 
-            <div className="detail">
-
-                <span className="label">
-                    ID
-                </span>
-
-                <span className="value">
-                    {patient.id}
-                </span>
-
-            </div>
-
-            <div className="detail">
-
-                <span className="label">
-                    Nom
-                </span>
-
-                <span className="value">
-                    {patient.nom}
-                </span>
-
-            </div>
-
-            <div className="detail">
-
-                <span className="label">
-                    Prénom
-                </span>
-
-                <span className="value">
-                    {patient.prenom}
-                </span>
-
-            </div>
-
-            <div className="detail">
-
-                <span className="label">
-                    Email
-                </span>
-
-                <span className="value">
-                    {patient.email}
-                </span>
-
-            </div>
-
-            <div className="detail">
-
-                <span className="label">
-                    Username
-                </span>
-
-                <span className="value">
-                    {patient.username}
-                </span>
-
-            </div>
-
-            <div className="detail">
-
-                <span className="label">
-                    Téléphone
-                </span>
-
-                <span className="value">
-                    {patient.telephone}
-                </span>
-
-            </div>
-
-            <div className="detail">
-
-                <span className="label">
-                    Date de naissance
-                </span>
-
-                <span className="value">
-                    {patient.dateNaissance}
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-);
 }
 
 export default ConsulterPatient;
