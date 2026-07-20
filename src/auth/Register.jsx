@@ -60,6 +60,11 @@ function Register(){
 
     return(
         <div>
+            
+    <div className="page">
+
+      <div className="form-card">
+         <h1>Inscription</h1>
 
          <form
             className="form"
@@ -124,11 +129,20 @@ function Register(){
                 className="btn-primary"
                 type="submit"
             >
-                inscription
+                s'inscrire
             </button>
+
+            <button
+            className="btn-primary"
+            onClick={() => {navigate("/login")}}
+          >
+            Se connecter
+          </button>
 
         </form>
         </div>
+         </div>
+          </div>
     )
 
 }

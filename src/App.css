@@ -363,6 +363,8 @@ select{
     flex-direction:column;
 
     gap:18px;
+    
+    justify-content: center;
 }
 
 .form-group{
@@ -372,6 +374,7 @@ select{
     flex-direction:column;
 
     gap:8px;
+    
 }
 
 .form-group label{
@@ -379,6 +382,7 @@ select{
     font-weight:bold;
 
     color:#333;
+   
 }
 
 .form input,

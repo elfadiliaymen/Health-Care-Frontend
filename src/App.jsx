@@ -1,46 +1,48 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route , useLocation } from "react-router-dom";
 import "./App.css";
-
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import ProtectedRoute from "./Components/ProtectedRoute";
-
 import Dashboard from "./pages/Dashboard";
-
 import PatientsActions from "./pages/Patients/PatientsActions";
 import PatientsList from "./pages/Patients/PatientsList";
 import AddPatient from "./pages/Patients/AddPatient";
 import ModifiePatient from "./pages/Patients/ModifiePatient";
 import ConsulterPatient from "./pages/Patients/ConsulterPatient";
-
 import MedecinActions from "./pages/Medecins/MedecinActions";
 import MedecinsList from "./pages/Medecins/MedecinsList";
 import AddMedecin from "./pages/Medecins/AddMedecin";
 import ModifieMedecin from "./pages/Medecins/ModifieMedecin";
 import ConsulterMedecin from "./pages/Medecins/ConsulterMedecin";
-
 import DossierActions from "./pages/Dossiers/DossierActions";
 import DossierList from "./pages/Dossiers/DossiersList";
 import AddDossier from "./pages/Dossiers/AddDossier";
 import ModifieDossier from "./pages/Dossiers/ModifieDossier";
 import ConsulterDossier from "./pages/Dossiers/ConsulterDossier";
-
 import RendezvousActions from "./pages/RendezVous/RendezvousActions";
 import RendesVousList from "./pages/RendezVous/RendesVousList";
 import AddRendezVous from "./pages/RendezVous/AddRendezVous";
 import ModifieRendezVous from "./pages/RendezVous/ModifieRendezVous";
 import ConsulterRendezVous from "./pages/RendezVous/ConsulterRendezVous";
 import Register from "./auth/Register";
+import Login from "./auth/Login";
 
 function App() {
+
+  const location = useLocation();
+  const hideLayout = location.pathname === "/login" || location.pathname === "/register";
+
+
+
   return (
     <div className="app">
 
-      <Header />
+{!hideLayout && <Header />}
 
       <Routes>
 
         <Route path="/register" element={<Register />}/>
+        <Route path="/login" element={<Login />} />
 
        
         <Route
@@ -245,7 +247,8 @@ function App() {
 
       </Routes>
 
-      <Footer />
+{!hideLayout &&  <Footer />}
+     
 
     </div>
   );

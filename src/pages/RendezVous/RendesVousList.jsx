@@ -71,17 +71,20 @@ function RendesVousList(){
 
                         <td>
 
-                            <Link to={`/consulter-rendez-vous/${r.id}`}>
+                            <Link to={`/consulter-rendez-vous/${r.id}`} 
+                               className="btn-view">
                                 Consulter
                             </Link>
 
-                            <Link to={`/update-rendez-vous/${r.id}`}>
+                            <Link to={`/update-rendez-vous/${r.id}`} 
+                              className="btn-edit">
                                 Modifier
                             </Link>
 
                             <button
                                 className="btn"
                                 onClick={() => handleDelete(r.id)}
+                                  className="btn-delete"
                             >
                                 Annuler
                             </button>
