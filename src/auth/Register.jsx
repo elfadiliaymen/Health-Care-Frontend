@@ -1,0 +1,136 @@
+import { useState , useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import api from "../api/api";
+import { useNavigate } from "react-router-dom";
+
+
+const schema = yup.object({
+ email: yup
+     .string()
+     .email("Email invalide")
+     .required("L'email est obligatoire"),
+ 
+   username: yup
+     .string()
+     .min(3, "Le username doit contenir au moins 3 caractères")
+     .required("Le username est obligatoire"),
+ 
+   password: yup
+     .string()
+     .min(6, "Le mot de passe doit contenir au moins 6 caractères")
+     .required("Le mot de passe est obligatoire"),
+
+  role: yup
+    .string()
+    .required("L'id du patient est obligatoire"),
+});
+
+
+function Register(){
+
+   const {
+      register,
+      handleSubmit,
+      reset,
+      formState: { errors }
+    } = useForm({
+      resolver: yupResolver(schema)
+    });
+
+    const navigate = useNavigate();
+
+
+    function handleRegister(data){
+        api.post("/auth/register" , data).then((res) => {
+            console.log(res.data);
+            const token = res.data;
+            localStorage.setItem("token" , token);
+            reset();
+                 alert("Inscription réussie !");
+                 navigate("/")
+                 
+
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+
+    return(
+        <div>
+
+         <form
+            className="form"
+            onSubmit={handleSubmit(handleRegister)}
+        >
+
+    
+            <div className="form-group">
+                <label>Username</label>
+                <input
+                    type="text"
+                    {...register("username")}
+                />
+                <p className="error">{errors.username?.message}</p>
+            </div>
+
+                <div className="form-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    {...register("email")}
+                />
+                <p className="error">{errors.email?.message}</p>
+            </div>
+
+            <div className="form-group">
+                <label>Mot de passe</label>
+                <input
+                    type="password"
+                    {...register("password")}
+                />
+                <p className="error">{errors.password?.message}</p>
+            </div>
+
+              
+          <div className="form-group">
+            <label>Identité</label>
+
+            <select {...register("role")}>
+
+              <option value="">
+                Choisir un rôle
+              </option>
+
+              <option value="MEDECIN">
+                Médecin
+              </option>
+
+              <option value="PATIENT">
+                Patient
+              </option>
+
+            </select>
+
+            <p className="error">
+              {errors.role?.message}
+            </p>
+          </div>
+
+
+            <button
+                className="btn-primary"
+                type="submit"
+            >
+                inscription
+            </button>
+
+        </form>
+        </div>
+    )
+
+}
+
+export default Register;
