@@ -45,8 +45,10 @@ function Register(){
     function handleRegister(data){
         api.post("/auth/register" , data).then((res) => {
             console.log(res.data);
-            const token = res.data;
-            localStorage.setItem("token" , token);
+
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("user", JSON.stringify(res.data));
+
             reset();
                  alert("Inscription réussie !");
                  navigate("/")

@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import RoleGuard from "./Components/RoleGuard";
 import Dashboard from "./pages/Dashboard";
 import PatientsActions from "./pages/Patients/PatientsActions";
 import PatientsList from "./pages/Patients/PatientsList";
@@ -68,7 +69,9 @@ function App() {
           path="/patients-actions"
           element={
             <ProtectedRoute>
-              <PatientsActions />
+              <RoleGuard allowedRoles={["ADMIN"]}>
+                <PatientsActions />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -77,7 +80,9 @@ function App() {
           path="/patients"
           element={
             <ProtectedRoute>
-              <PatientsList />
+              <RoleGuard allowedRoles={["ADMIN"]}>
+                <PatientsList />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -86,7 +91,9 @@ function App() {
           path="/add-patient"
           element={
             <ProtectedRoute>
-              <AddPatient />
+              <RoleGuard allowedRoles={["ADMIN"]}>
+                <AddPatient />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -95,7 +102,9 @@ function App() {
           path="/consulter-patient/:patientId"
           element={
             <ProtectedRoute>
-              <ConsulterPatient />
+              <RoleGuard allowedRoles={["ADMIN", "PATIENT", "MEDECIN"]}>
+                <ConsulterPatient />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -104,7 +113,9 @@ function App() {
           path="/update-patient/:patientId"
           element={
             <ProtectedRoute>
-              <ModifiePatient />
+              <RoleGuard allowedRoles={["ADMIN", "PATIENT"]}>
+                <ModifiePatient />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -114,7 +125,9 @@ function App() {
           path="/medecins-actions"
           element={
             <ProtectedRoute>
-              <MedecinActions />
+              <RoleGuard allowedRoles={["ADMIN"]}>
+                <MedecinActions />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -123,7 +136,9 @@ function App() {
           path="/medecins"
           element={
             <ProtectedRoute>
-              <MedecinsList />
+              <RoleGuard allowedRoles={["ADMIN"]}>
+                <MedecinsList />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -132,7 +147,9 @@ function App() {
           path="/add-medecin"
           element={
             <ProtectedRoute>
-              <AddMedecin />
+              <RoleGuard allowedRoles={["ADMIN"]}>
+                <AddMedecin />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -141,7 +158,9 @@ function App() {
           path="/consulter-medecin/:medecinId"
           element={
             <ProtectedRoute>
-              <ConsulterMedecin />
+              <RoleGuard allowedRoles={["ADMIN", "PATIENT", "MEDECIN"]}>
+                <ConsulterMedecin />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -150,7 +169,9 @@ function App() {
           path="/update-medecin/:medecinId"
           element={
             <ProtectedRoute>
-              <ModifieMedecin />
+              <RoleGuard allowedRoles={["ADMIN", "MEDECIN"]}>
+                <ModifieMedecin />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -159,7 +180,9 @@ function App() {
           path="/dossiers-actions"
           element={
             <ProtectedRoute>
-              <DossierActions />
+              <RoleGuard allowedRoles={["ADMIN"]}>
+                <DossierActions />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -168,7 +191,9 @@ function App() {
           path="/dossiers"
           element={
             <ProtectedRoute>
-              <DossierList />
+              <RoleGuard allowedRoles={["ADMIN"]}>
+                <DossierList />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -177,7 +202,9 @@ function App() {
           path="/add-dossier"
           element={
             <ProtectedRoute>
-              <AddDossier />
+              <RoleGuard allowedRoles={["ADMIN"]}>
+                <AddDossier />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -186,7 +213,9 @@ function App() {
           path="/consulter-dossier/:dossierId"
           element={
             <ProtectedRoute>
-              <ConsulterDossier />
+              <RoleGuard allowedRoles={["ADMIN", "PATIENT", "MEDECIN"]}>
+                <ConsulterDossier />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -195,7 +224,9 @@ function App() {
           path="/update-dossier/:dossierId"
           element={
             <ProtectedRoute>
-              <ModifieDossier />
+              <RoleGuard allowedRoles={["ADMIN"]}>
+                <ModifieDossier />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -204,7 +235,9 @@ function App() {
           path="/rendez-vous-actions"
           element={
             <ProtectedRoute>
-              <RendezvousActions />
+              <RoleGuard allowedRoles={["ADMIN", "PATIENT", "MEDECIN"]}>
+                <RendezvousActions />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -213,7 +246,9 @@ function App() {
           path="/rendez-vous"
           element={
             <ProtectedRoute>
-              <RendesVousList />
+              <RoleGuard allowedRoles={["ADMIN", "PATIENT", "MEDECIN"]}>
+                <RendesVousList />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -222,7 +257,9 @@ function App() {
           path="/add-rendez-vous"
           element={
             <ProtectedRoute>
-              <AddRendezVous />
+              <RoleGuard allowedRoles={["ADMIN", "PATIENT"]}>
+                <AddRendezVous />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -231,7 +268,9 @@ function App() {
           path="/consulter-rendez-vous/:rendezVousId"
           element={
             <ProtectedRoute>
-              <ConsulterRendezVous />
+              <RoleGuard allowedRoles={["ADMIN", "PATIENT", "MEDECIN"]}>
+                <ConsulterRendezVous />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />
@@ -240,7 +279,9 @@ function App() {
           path="/update-rendez-vous/:rendezVousId"
           element={
             <ProtectedRoute>
-              <ModifieRendezVous />
+              <RoleGuard allowedRoles={["ADMIN", "PATIENT"]}>
+                <ModifieRendezVous />
+              </RoleGuard>
             </ProtectedRoute>
           }
         />

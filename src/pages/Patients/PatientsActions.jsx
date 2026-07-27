@@ -28,4 +28,3 @@ function PatientsActions(){
 }
 
 export default PatientsActions;
-

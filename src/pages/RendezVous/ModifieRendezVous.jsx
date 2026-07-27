@@ -71,15 +71,6 @@ function ModifieRendezVous() {
         console.log(res.data);
 
         alert("Rendez-vous modifié avec succès.");
-
-        reset({
-          dateRendezVous: "",
-          statut: "",
-          patientId: "",
-          medecinId: "",
-        });
-
-        setRendezVousId("");
       })
       .catch((err) => {
         console.log(err);

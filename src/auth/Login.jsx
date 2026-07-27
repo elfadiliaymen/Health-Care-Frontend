@@ -34,9 +34,8 @@ function Login() {
     api.post("/auth/login", data)
       .then((res) => {
 
-        const token = res.data;
-
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data));
 
         alert("Connexion réussie !");
 

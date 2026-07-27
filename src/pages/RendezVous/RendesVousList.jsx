@@ -82,7 +82,7 @@ function RendesVousList(){
                             </Link>
 
                             <button
-                                className="btn"
+                  
                                 onClick={() => handleDelete(r.id)}
                                   className="btn-delete"
                             >
