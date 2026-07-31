@@ -7,6 +7,7 @@ function MedecinsList(){
 
 
     const [medecins , setMedecins] = useState([]);
+    const [selectedSpecialite, setSelectedSpecialite] = useState("");
 
     useEffect(() => {
       api.get("/medecin").then(res => setMedecins(res.data.content))
@@ -34,6 +35,26 @@ function MedecinsList(){
         });
     }
 
+  
+const allSpecialites = medecins.map((medecin)=> {
+  return medecin.specialite;
+});
+
+
+const uniqueSpecialites = allSpecialites.filter((specialite, index) => {
+  return allSpecialites.indexOf(specialite) === index;
+});
+
+
+let displayedMedecins = medecins;
+
+
+if (selectedSpecialite !== "") {
+  displayedMedecins = medecins.filter((medecin) => {
+    return medecin.specialite === selectedSpecialite;
+  });
+}
+
    return (
 
 <div className="page">
@@ -48,6 +69,17 @@ function MedecinsList(){
         >
             + Ajouter
         </Link>
+
+        <select
+  value={selectedSpecialite}
+  onChange={(e) => setSelectedSpecialite(e.target.value)}
+>
+  <option value="">Toutes les spécialités</option>
+
+  {uniqueSpecialites.map(function (specialite) {
+    return <option value={specialite}>{specialite}</option>;
+  })}
+</select>
 
     </div>
 
@@ -74,7 +106,7 @@ function MedecinsList(){
 
                 {medecins.length > 0 ? (
 
-                    medecins.map((medecin) => (
+                    displayedMedecins.map((medecin) => (
 
                         <tr key={medecin.id}>
 

@@ -2,6 +2,7 @@ import api from "../../api/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { toast } from "react-toastify";
 
 const schema = yup.object({
 
@@ -54,13 +55,12 @@ function AddPatient() {
     api.post("/patient", data)
       .then((res) => {
         console.log(res.data);
-
-        alert("Patient ajouté avec succès !");
-
+       toast.success("Patient modifié avec succès !");
         reset();
       })
       .catch((err) => {
         console.log(err);
+      toast.error("Erreur lors de la modification du patient.");
       });
 
   }

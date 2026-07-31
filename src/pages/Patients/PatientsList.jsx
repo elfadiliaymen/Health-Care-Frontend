@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function PatientsList() {
   const [patients, setPatients] = useState([]);
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+ 
 
   useEffect(() => {
     api
@@ -12,7 +17,11 @@ function PatientsList() {
         setPatients(res.data.content);
       })
       .catch((error) => {
-        console.error(error);
+        setErrorMessage(
+  error.response
+    ? "Le serveur a renvoyé une erreur."
+    : "Impossible de contacter le serveur. Vérifiez votre connexion."
+);
       });
   }, []);
 
@@ -29,12 +38,25 @@ function PatientsList() {
         setPatients((currentPatients) =>
           currentPatients.filter((patient) => patient.id !== patientId)
         );
+           toast.success("Patient supprimé avec succès !");
       })
       .catch((error) => {
         console.error(error);
-        alert("La suppression a échoué.");
+        toast.error("La suppression a échoué.");
       });
   }
+
+ 
+
+const filteredPatients = patients.filter((patient) => {
+  const fullName = patient.nom + " " + patient.prenom;
+  return fullName.toLowerCase().includes(searchTerm.toLowerCase());
+});
+
+const sortedPatients = [...filteredPatients].sort((a, b) => {
+  const comparison = `${a.nom} ${a.prenom}`.localeCompare(`${b.nom} ${b.prenom}`);
+  return sortOrder === "asc" ? comparison : -comparison;
+});
 
 return (
     <>
@@ -47,8 +69,27 @@ return (
         <Link className="btn-primary" to="/add-patient">
             + Ajouter
         </Link>
+        <button
+  className={sortOrder === "asc" ? "btn-primary" : "btn-delete"}
+  onClick={() => setSortOrder("asc")}
+>
+  A → Z
+</button>
+<button
+  className={sortOrder === "desc" ? "btn-primary" : "btn-delete"}
+  onClick={() => setSortOrder("desc")}
+>
+  Z → A
+</button>
 
     </div>
+
+    <input
+  type="text"
+  placeholder="Rechercher un patient..."
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+/>
 
     <div className="table-container">
 
@@ -71,9 +112,14 @@ return (
 
             <tbody>
 
-                {patients.length > 0 ? (
+                {
+                    errorMessage ? (
+    <tr>
+        <td colSpan="6">{errorMessage}</td>
+    </tr>
+) : sortedPatients.length  > 0 ? (
 
-                    patients.map((patient) => (
+                    sortedPatients.map((patient) => (
 
                         <tr key={patient.id}>
 

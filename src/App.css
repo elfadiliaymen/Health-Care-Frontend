@@ -106,6 +106,111 @@ select{
     color:#333;
 }
 
+.page-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-bottom:30px;
+}
+
+.page-header h1{
+
+    margin-bottom:0;
+}
+
+.page-header .btn-primary{
+
+    width:auto;
+
+    margin:0;
+
+    border-radius:3px;
+}
+
+.page-header .btn-delete{
+
+    padding:10px 16px;
+
+    border-radius:3px;
+}
+
+.page-header button + button{
+
+    margin-left:-15px;
+
+    border-left:none;
+
+    border-radius:0 3px 3px 0;
+}
+
+.page-header button:first-of-type{
+
+    border-radius:3px 0 0 3px;
+}
+
+.page-header select{
+
+    padding:8px 12px;
+
+    border:1px solid #ccc;
+
+    border-radius:3px;
+
+    background:#fff;
+
+    color:#333;
+
+    outline:none;
+}
+
+.page-header select:focus{
+
+    border-color:#66afe9;
+
+    box-shadow:0 0 0 3px rgba(102,175,233,.15);
+}
+
+.page > input[type="text"]{
+
+    width:100%;
+
+    max-width:420px;
+
+    padding:10px 14px;
+
+    margin-bottom:20px;
+
+    border:1px solid #ccc;
+
+    border-radius:3px;
+
+    background:#fff;
+
+    color:#333;
+
+    outline:none;
+}
+
+.page > input[type="text"]:focus{
+
+    border-color:#66afe9;
+
+    box-shadow:0 0 0 3px rgba(102,175,233,.15);
+}
+
+.page > input[type="text"] + .table-container{
+
+    margin-top:0;
+}
+
 /* ======================================================
    HEADER
 ====================================================== */
@@ -395,6 +500,8 @@ select{
 
     border:1px solid #ccc;
 
+    border-radius:3px;
+
     background:#fff;
 
     color:#333;
@@ -407,6 +514,8 @@ select{
 .form select:focus{
 
     border-color:#66afe9;
+
+    box-shadow:0 0 0 3px rgba(102,175,233,.15);
 }
 
 .form textarea{
@@ -442,6 +551,8 @@ select{
 
     border:1px solid #2e6da4;
 
+    border-radius:3px;
+
     background:#337ab7;
 
     color:white;
@@ -460,9 +571,13 @@ select{
 
     border:1px solid #2e6da4;
 
+    border-radius:3px;
+
     background:#337ab7;
 
     color:white;
+
+    cursor:pointer;
 }
 
 .btn-view:hover{
@@ -476,9 +591,13 @@ select{
 
     border:1px solid #eea236;
 
+    border-radius:3px;
+
     background:#f0ad4e;
 
     color:white;
+
+    cursor:pointer;
 }
 
 .btn-edit:hover{
@@ -491,6 +610,8 @@ select{
     padding:6px 12px;
 
     border:1px solid #d43f3a;
+
+    border-radius:3px;
 
     background:#d9534f;
 
@@ -512,6 +633,8 @@ select{
 .table-container{
 
     width:100%;
+
+    margin-top:20px;
 
     overflow-x:auto;
 }
@@ -538,7 +661,7 @@ select{
 
 .table thead{
 
-    background:#fff;
+    background:#f7f7f7;
 }
 
 .table thead th{
@@ -570,22 +693,17 @@ select{
 
 .table tbody tr:hover{
 
-    background:#5bc0de;
+    background:#eaf3f8;
 }
 
 .table tbody tr:hover td{
 
-    color:white;
+    color:#333;
 }
 
 .table tbody tr:hover a{
 
-    color:white;
-}
-
-.table tbody tr:hover button{
-
-    color:white;
+    color:#337ab7;
 }
 
 .table-actions{

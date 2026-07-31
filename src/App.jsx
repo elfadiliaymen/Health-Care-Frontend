@@ -1,4 +1,6 @@
 import { Routes, Route , useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
@@ -290,6 +292,11 @@ function App() {
 
 {!hideLayout &&  <Footer />}
      
+     <ToastContainer
+  position="top-right"
+  autoClose={3000}
+  hideProgressBar={false}
+/>
 
     </div>
   );
