@@ -37,8 +37,8 @@ function PatientsList() {
   }
 
 return (
-
-<div className="page">
+    <>
+            <div className="page">
 
     <div className="page-header">
 
@@ -135,8 +135,8 @@ return (
     </div>
 
 </div>
-
-);
+        
+</>)
 }
 
 export default PatientsList;
